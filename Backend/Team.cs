@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Backend
 {
@@ -11,10 +8,7 @@ namespace Backend
     /// </summary>
     class Team
     {
-        /// <summary>
-        /// The <see cref="Player"/>'s list.
-        /// </summary>
-        private List<Player> playersList = new List<Player>();
+        #region Variables
         /// <summary>
         /// Gets the name of the <see cref="Team"/>.
         /// </summary>
@@ -23,14 +17,40 @@ namespace Backend
         /// </value>
         public string name { get; private set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Team"/> class.
+        /// The <see cref="Player"/>'s list.
         /// </summary>
-        public Team() { }
+        private List<Player> playersList;
+        /// <summary>
+        /// The goals scored or lost.
+        /// </summary>
+        private int goalsScored, goalsLost;
+        /// <summary>
+        /// The matches played.
+        /// </summary>
+        private int matchesPlayed;
+        /// <summary>
+        /// The wins, looses or draws.
+        /// </summary>
+        private int wins, loosses, draws;
+        #endregion
+
+        #region Constructors
         /// <summary>
         /// Initializes a new instance of the <see cref="Team" /> class.
         /// </summary>
-        /// <param name="name">The name.</param>
-        public Team(string name) { this.name = name; }
+        /// <param name="name">The name of the <see cref="Team"/>.</param>
+        /// <param name="number">The number of <see cref="Player"/>s.</param>
+        public Team(string name, int number)
+        {
+            this.name = name;
+            playersList = new List<Player>(number);
+            goalsScored = 0; goalsLost = 0;
+            matchesPlayed = 0;
+            wins = 0; loosses = 0; draws = 0;
+        }
+        #endregion
+
+        #region Methoods
         /// <summary>
         /// Adds the <see cref="Player"/>.
         /// </summary>
@@ -57,5 +77,37 @@ namespace Backend
         /// </summary>
         /// <returns>Object of <see cref="Team"/> type.</returns>
         public Team ReturnTeam() { return this; }
+
+        /// <summary>
+        /// Returns the number of goals scored by <see cref="Team"/>.
+        /// </summary>
+        /// <returns>Number of goals scored by <see cref="Team"/>.</returns>
+        public int ReturnGoalsScored() { return this.goalsScored; }
+        /// <summary>
+        /// Returns the number of goals lost by <see cref="Team"/>.
+        /// </summary>
+        /// <returns>Number of goals lost by <see cref="Team"/>.</returns>
+        public int ReturnGoalsLost() { return this.goalsLost; }
+        /// <summary>
+        /// Returs the number matches played by <see cref="Team"/>.
+        /// </summary>
+        /// <returns>Number of matches played by <see cref="Team"/>.</returns>
+        public int ReturMatchesPlayed() { return this.matchesPlayed; }
+        /// <summary>
+        /// Returns the number of wins.
+        /// </summary>
+        /// <returns>Number of wins.</returns>
+        public int ReturnWins() { return this.wins; }
+        /// <summary>
+        /// Returns the nubmer loosses.
+        /// </summary>
+        /// <returns>Number of loosses.</returns>
+        public int ReturnLoosses() { return this.loosses; }
+        /// <summary>
+        /// Returns the number of draws.
+        /// </summary>
+        /// <returns>Number of draws.</returns>
+        public int ReturnDraws() { return this.draws; }
+        #endregion
     }
 }
