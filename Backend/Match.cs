@@ -40,7 +40,7 @@ namespace Backend
         /// <param name="number">The number of supporting <see cref="Referee" />s in a <see cref="Match"/>.</param>
         /// <param name="teamA">The <see cref="Team"/> a.</param>
         /// <param name="teamB">The <see cref="Team"/> b.</param>
-        public Match(string refereeName, string refereeSurname, int number, Team teamA, Team teamB)
+        protected Match(string refereeName, string refereeSurname, int number, Team teamA, Team teamB)
         {
             mainReferee = new Referee(refereeName, refereeName);
             supportingRefereesList = new List<Referee>(number);
@@ -54,14 +54,14 @@ namespace Backend
         /// <summary>
         /// Adds the score to <see cref="Team"/> a.
         /// </summary>
-        public void AddScoreToTeamA()
+        protected void AddScoreToTeamA()
         {
             matchScore.AddScoreToTeamA();
         }
         /// <summary>
         /// Adds the score to <see cref="Team"/> b.
         /// </summary>
-        public void AddScoreToTeamB()
+        protected void AddScoreToTeamB()
         {
             matchScore.AddScoreToTeamB();
         }
@@ -69,7 +69,7 @@ namespace Backend
         /// Gets the score of <see cref="Team"/> a.
         /// </summary>
         /// <returns>Number of <see cref="int"/> type.</returns>
-        public int GetScoreOfTeamA()
+        protected int GetScoreOfTeamA()
         {
             return matchScore.GetScoreOfTeamA();
         }
@@ -77,7 +77,7 @@ namespace Backend
         /// Gets the score of <see cref="Team"/> b.
         /// </summary>
         /// <returns>Number of <see cref="int"/> type.</returns>
-        public int GetScoreOfTeamB()
+        protected int GetScoreOfTeamB()
         {
             return matchScore.GetScoreOfTeamB();
         }
