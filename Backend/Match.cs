@@ -35,14 +35,13 @@ namespace Backend
         /// <summary>
         /// Initializes a new instance of the <see cref="Match" /> class.
         /// </summary>
-        /// <param name="refereeName">Name of the <see cref="Referee" />.</param>
-        /// <param name="refereeSurname">The <see cref="Referee" />'s surname.</param>
-        /// <param name="number">The number of supporting <see cref="Referee" />s in a <see cref="Match"/>.</param>
-        /// <param name="teamA">The <see cref="Team"/> a.</param>
-        /// <param name="teamB">The <see cref="Team"/> b.</param>
-        protected Match(string refereeName, string refereeSurname, int number, Team teamA, Team teamB)
+        /// <param name="mainReferee">The main <see cref="Referee"/>.</param>
+        /// <param name="number">The number of supporting <see cref="Referee" />s in a <see cref="Match" />.</param>
+        /// <param name="teamA">The <see cref="Team" /> a.</param>
+        /// <param name="teamB">The <see cref="Team" /> b.</param>
+        protected Match(Referee mainReferee, int number, Team teamA, Team teamB)
         {
-            mainReferee = new Referee(refereeName, refereeName);
+            this.mainReferee = mainReferee;
             supportingRefereesList = new List<Referee>(number);
             this.teamA = teamA;
             this.teamB = teamB;
@@ -54,14 +53,14 @@ namespace Backend
         /// <summary>
         /// Adds the score to <see cref="Team"/> a.
         /// </summary>
-        protected void AddScoreToTeamA()
+        public void AddScoreToTeamA()
         {
             matchScore.AddScoreToTeamA();
         }
         /// <summary>
         /// Adds the score to <see cref="Team"/> b.
         /// </summary>
-        protected void AddScoreToTeamB()
+        public void AddScoreToTeamB()
         {
             matchScore.AddScoreToTeamB();
         }
@@ -69,7 +68,7 @@ namespace Backend
         /// Gets the score of <see cref="Team"/> a.
         /// </summary>
         /// <returns>Number of <see cref="int"/> type.</returns>
-        protected int GetScoreOfTeamA()
+        public int GetScoreOfTeamA()
         {
             return matchScore.GetScoreOfTeamA();
         }
@@ -77,7 +76,7 @@ namespace Backend
         /// Gets the score of <see cref="Team"/> b.
         /// </summary>
         /// <returns>Number of <see cref="int"/> type.</returns>
-        protected int GetScoreOfTeamB()
+        public int GetScoreOfTeamB()
         {
             return matchScore.GetScoreOfTeamB();
         }
