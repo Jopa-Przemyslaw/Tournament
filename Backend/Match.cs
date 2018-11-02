@@ -12,10 +12,6 @@ namespace Backend
         /// The main <see cref="Referee"/>.
         /// </value>
         protected Referee mainReferee { get; private set; }
-        /// <summary>
-        /// The supporting <see cref="Referee"/>s list.
-        /// </summary>
-        protected List<Referee> supportingRefereesList;
 
         /// <summary>
         /// The <see cref="Team"/> a.
@@ -35,51 +31,20 @@ namespace Backend
         /// <summary>
         /// Initializes a new instance of the <see cref="Match" /> class.
         /// </summary>
-        /// <param name="mainReferee">The main <see cref="Referee"/>.</param>
-        /// <param name="number">The number of supporting <see cref="Referee" />s in a <see cref="Match" />.</param>
+        /// <param name="mainReferee">The main <see cref="Referee" />.</param>
         /// <param name="teamA">The <see cref="Team" /> a.</param>
         /// <param name="teamB">The <see cref="Team" /> b.</param>
-        protected Match(Referee mainReferee, int number, Team teamA, Team teamB)
+        protected Match(Referee mainReferee, Team teamA, Team teamB)
         {
             this.mainReferee = mainReferee;
-            supportingRefereesList = new List<Referee>(number);
             this.teamA = teamA;
             this.teamB = teamB;
             matchScore = new MatchScore(0, 0);
         }
         #endregion
 
-        #region Methoods
-        /// <summary>
-        /// Adds the score to <see cref="Team"/> a.
-        /// </summary>
-        public void AddScoreToTeamA()
-        {
-            matchScore.AddScoreToTeamA();
-        }
-        /// <summary>
-        /// Adds the score to <see cref="Team"/> b.
-        /// </summary>
-        public void AddScoreToTeamB()
-        {
-            matchScore.AddScoreToTeamB();
-        }
-        /// <summary>
-        /// Gets the score of <see cref="Team"/> a.
-        /// </summary>
-        /// <returns>Number of <see cref="int"/> type.</returns>
-        public int GetScoreOfTeamA()
-        {
-            return matchScore.GetScoreOfTeamA();
-        }
-        /// <summary>
-        /// Gets the score of <see cref="Team"/> b.
-        /// </summary>
-        /// <returns>Number of <see cref="int"/> type.</returns>
-        public int GetScoreOfTeamB()
-        {
-            return matchScore.GetScoreOfTeamB();
-        }
+        #region Methods
+        
         #endregion
 
         #region SubClasses
