@@ -47,7 +47,6 @@ namespace Backend
         #endregion
 
         #region Methods
-        
         #endregion
 
         #region SubClasses
