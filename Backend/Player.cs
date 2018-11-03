@@ -29,6 +29,13 @@ namespace Backend
         /// The amount of goals scored.
         /// </value>
         public int goalsScored { get; private set; }
+        /// <summary>
+        /// Gets the amount of trophies won by the <see cref="Player" />.
+        /// </summary>
+        /// <value>
+        /// The amount of trophies won by the <see cref="Player" />
+        /// </value>
+        public int trophiesWon { get; private set; }
         #endregion
 
         #region Getters N Setters
@@ -62,6 +69,11 @@ namespace Backend
         /// </summary>
         /// <param name="matchesPlayed">The amount of <see cref="Match" />es played.</param>
         public void SetMatchesPlayer(int matchesPlayed) => this.matchesPlayed = matchesPlayed;
+        /// <summary>
+        /// Sets the amount of trophies won by the <see cref="Player"/>.
+        /// </summary>
+        /// <param name="trophiesWon">The amount of trophies.</param>
+        public void SetTrophiesWon(int trophiesWon) => this.trophiesWon = trophiesWon;
         #endregion
 
         #region Constructors
@@ -75,6 +87,7 @@ namespace Backend
             playersTeam = null;
             matchesPlayed = 0;
             goalsScored = 0;
+            trophiesWon = 0;
         }
         /// <summary>
         /// Initializes a new instance of the <see cref="Player" /> class.
@@ -87,20 +100,23 @@ namespace Backend
             this.playersTeam = playersTeam;
             matchesPlayed = 0;
             goalsScored = 0;
+            trophiesWon = 0;
         }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Player"/> class.
+        /// Initializes a new instance of the <see cref="Player" /> class.
         /// </summary>
-        /// <param name="name">The name of the <see cref="Player"/>.</param>
-        /// <param name="surname">The <see cref="Player"/>'s surname.</param>
-        /// <param name="playersTeam">The <see cref="Player"/>'s team.</param>
-        /// <param name="matchesPlayed">The amount of <see cref="Match"/>es played by the <see cref="Player"/>.</param>
-        /// <param name="goalsScored">The amount of goals scored by the <see cref="Player"/>.</param>
-        public Player(string name, string surname, Team playersTeam, int matchesPlayed, int goalsScored) : base(name, surname)
+        /// <param name="name">The name of the <see cref="Player" />.</param>
+        /// <param name="surname">The <see cref="Player" />'s surname.</param>
+        /// <param name="playersTeam">The <see cref="Player" />'s team.</param>
+        /// <param name="matchesPlayed">The amount of <see cref="Match" />es played by the <see cref="Player" />.</param>
+        /// <param name="goalsScored">The amount of goals scored by the <see cref="Player" />.</param>
+        /// <param name="trophiesWon">The amount of trophies won by the <see cref="Player"/>.</param>
+        public Player(string name, string surname, Team playersTeam, int matchesPlayed, int goalsScored, int trophiesWon) : base(name, surname)
         {
             this.playersTeam = playersTeam;
             this.matchesPlayed = matchesPlayed;
             this.goalsScored = goalsScored;
+            this.trophiesWon = 0;
         }
         #endregion
 
@@ -118,6 +134,13 @@ namespace Backend
         public void AddMatchPlayed()
         {
             matchesPlayed++;
+        }
+        /// <summary>
+        /// Adds the trophy won by the <see cref="Player" />.
+        /// </summary>
+        public void AddTrophyWon()
+        {
+            trophiesWon++;
         }
         #endregion
     }
