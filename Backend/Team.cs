@@ -50,7 +50,7 @@ namespace Backend
         }
         #endregion
 
-        #region Methoods
+        #region Methods
         /// <summary>
         /// Adds the <see cref="Player"/>.
         /// </summary>
@@ -72,6 +72,11 @@ namespace Backend
         /// </summary>
         /// <returns>Object of <see cref="int"/> type.</returns>
         public int ReturnTeamCount() { return playersList.Count; }
+        /// <summary>
+        /// Returns the list of <see cref="Player"/>'s.
+        /// </summary>
+        /// <returns>List of <see cref="Player"/>s in the <see cref="Team"/>.</returns>
+        public List<Player> ReturnPlayers() { return this.playersList; }
         /// <summary>
         /// Returns the <see cref="Team"/>.
         /// </summary>

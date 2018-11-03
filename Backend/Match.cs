@@ -2,6 +2,9 @@
 
 namespace Backend
 {
+    /// <summary>
+    /// Abstract representation of <see cref="Match"/> class.
+    /// </summary>
     abstract class Match
     {
         #region Variables

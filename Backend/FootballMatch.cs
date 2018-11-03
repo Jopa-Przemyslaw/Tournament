@@ -1,6 +1,10 @@
 ﻿
 namespace Backend
 {
+    /// <summary>
+    /// Representation of <see cref="FootballMatch"/> class.
+    /// </summary>
+    /// <seealso cref="Backend.Match" />
     class FootballMatch : Match
     {
         #region Variables
@@ -91,3 +95,5 @@ namespace Backend
         #endregion
     }
 }
+
+//TODO: Add method returning match result. eg.ReturnMatchResult() => MatchScore
