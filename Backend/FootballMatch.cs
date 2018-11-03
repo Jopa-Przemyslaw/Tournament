@@ -95,5 +95,3 @@ namespace Backend
         #endregion
     }
 }
-
-//TODO: Add method returning match result. eg.ReturnMatchResult() => MatchScore
