@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace Backend
@@ -58,9 +60,22 @@ namespace Backend
         /// <param name="surname">The surname.</param>
         public void AddPlayer(string name, string surname) { playersList.Add(new Player(name, surname)); }
         /// <summary>
-        /// Removes the <see cref="Player"/>.
+        /// Removes the <see cref="Player" /> by the position on playersList.
         /// </summary>
-        public void RemovePlayer() { }
+        /// <param name="positionOnList">The position on list.</param>
+        public void RemovePlayer(int positionOnList)
+        {
+            try
+            {
+                if (!playersList.Any())
+                    throw new NotImplementedException();
+                playersList.RemoveAt(positionOnList);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Catched Exception! {playersList.ToString()} is null, can not remove element. {e}");
+            }
+        }
         /// <summary>
         /// Returns the <see cref="Player"/>.
         /// </summary>
