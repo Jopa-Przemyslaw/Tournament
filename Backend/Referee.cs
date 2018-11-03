@@ -29,8 +29,8 @@ namespace Backend
         /// <summary>
         /// Initializes a new instance of the <see cref="Referee"/> class.
         /// </summary>
-        /// <param name="name">The name.</param>
-        /// <param name="surname">The surname.</param>
+        /// <param name="name">The name of the <see cref="Referee"/>.</param>
+        /// <param name="surname">Thee <see cref="Referee"/>'s surname.</param>
         public Referee(string name,string surname) : base(name, surname) { }
     }
 }
