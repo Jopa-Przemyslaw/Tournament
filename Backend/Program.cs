@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using static Backend.ConsoleDisplay;
-using static Backend.ConsoleDisplaySystem;
 
 namespace Backend
 {
@@ -31,11 +30,6 @@ namespace Backend
             listOfTeams.Add(new Team("teamK", 23));
             listOfTeams.Add(new Team("teamL", 23));
 
-            listOfTeams.ElementAt(0).AddPlayer("PlayerName", "PlayerSurnameA");
-            listOfTeams.ElementAt(0).AddPlayer("PlayerName", "PlayerSurnameB");
-            listOfTeams.ElementAt(0).AddPlayer("PlayerName", "PlayerSurnameC");
-
-
             listOfReferees.Add(new Referee("Sedzia", "Kalosz0"));
             listOfReferees.Add(new Referee("Sedzia", "Kalosz1"));
             listOfReferees.Add(new Referee("Sedzia", "Kalosz2"));
@@ -45,7 +39,7 @@ namespace Backend
             FootballMatch footballMatch = new FootballMatch(new Referee("sedzia", "Glowny"),
                                                             new Team("druzynaA", 23), (listOfTeams.ElementAt(0)),
                                                             new Referee("Sedzia", "Boczny1"), new Referee("Sedzia", "Boczny2"));
-            
+
             MatchEngine matchEngine = new MatchEngine();
             //var watch = Stopwatch.StartNew();
             matchEngine.SymulateFootballMatch(ref footballMatch);
@@ -53,9 +47,7 @@ namespace Backend
             //Debug.WriteLine($"It tooks: {watch.ElapsedMilliseconds/1000}s.");
             Debug.WriteLine($"{footballMatch.ReturnTeamA().name} {footballMatch.GetScoreOfTeamA()} : {footballMatch.GetScoreOfTeamB()} {footballMatch.ReturnTeamB().name}. ");
 
-            DrawMenu(ref listOfTeams, ref listOfReferees);
-
-            #region Console Display Old
+            #region Console Display
             //List<Rozgrywki> listaTurniejowa = new List<Rozgrywki>();
             //for (int i = 0; i < listOfTeams.Count; i++)
             //{
