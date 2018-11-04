@@ -36,6 +36,44 @@ namespace Backend
         private int wins, loosses, draws;
         #endregion
 
+        #region Getters N Setters
+        /// <summary>
+        /// Returns the list of <see cref="Player"/>'s.
+        /// </summary>
+        /// <returns>List of <see cref="Player"/>s in the <see cref="Team"/>.</returns>
+        public List<Player> ReturnPlayers() => this.playersList;
+        /// <summary>
+        /// Returns the number of goals scored by <see cref="Team"/>.
+        /// </summary>
+        /// <returns>Number of goals scored by <see cref="Team"/>.</returns>
+        public int ReturnGoalsScored() => this.goalsScored;
+        /// <summary>
+        /// Returns the number of goals lost by <see cref="Team"/>.
+        /// </summary>
+        /// <returns>Number of goals lost by <see cref="Team"/>.</returns>
+        public int ReturnGoalsLost() => this.goalsLost;
+        /// <summary>
+        /// Returs the number matches played by <see cref="Team"/>.
+        /// </summary>
+        /// <returns>Number of matches played by <see cref="Team"/>.</returns>
+        public int ReturMatchesPlayed() => this.matchesPlayed;
+        /// <summary>
+        /// Returns the number of wins.
+        /// </summary>
+        /// <returns>Number of wins.</returns>
+        public int ReturnWins() => this.wins;
+        /// <summary>
+        /// Returns the nubmer loosses.
+        /// </summary>
+        /// <returns>Number of loosses.</returns>
+        public int ReturnLoosses() => this.loosses;
+        /// <summary>
+        /// Returns the number of draws.
+        /// </summary>
+        /// <returns>Number of draws.</returns>
+        public int ReturnDraws() => this.draws;
+        #endregion
+
         #region Constructors
         /// <summary>
         /// Initializes a new instance of the <see cref="Team" /> class.
@@ -86,48 +124,13 @@ namespace Backend
         /// Returns number of <see cref="Player"/>s in <see cref="Team"/>.
         /// </summary>
         /// <returns>Object of <see cref="int"/> type.</returns>
-        public int ReturnTeamCount() { return playersList.Count; }
-        /// <summary>
-        /// Returns the list of <see cref="Player"/>'s.
-        /// </summary>
-        /// <returns>List of <see cref="Player"/>s in the <see cref="Team"/>.</returns>
-        public List<Player> ReturnPlayers() { return this.playersList; }
+        public int ReturnTeamCount() { return playersList.Count; }        
         /// <summary>
         /// Returns the <see cref="Team"/>.
         /// </summary>
         /// <returns>Object of <see cref="Team"/> type.</returns>
         public Team ReturnTeam() { return this; }
-
-        /// <summary>
-        /// Returns the number of goals scored by <see cref="Team"/>.
-        /// </summary>
-        /// <returns>Number of goals scored by <see cref="Team"/>.</returns>
-        public int ReturnGoalsScored() { return this.goalsScored; }
-        /// <summary>
-        /// Returns the number of goals lost by <see cref="Team"/>.
-        /// </summary>
-        /// <returns>Number of goals lost by <see cref="Team"/>.</returns>
-        public int ReturnGoalsLost() { return this.goalsLost; }
-        /// <summary>
-        /// Returs the number matches played by <see cref="Team"/>.
-        /// </summary>
-        /// <returns>Number of matches played by <see cref="Team"/>.</returns>
-        public int ReturMatchesPlayed() { return this.matchesPlayed; }
-        /// <summary>
-        /// Returns the number of wins.
-        /// </summary>
-        /// <returns>Number of wins.</returns>
-        public int ReturnWins() { return this.wins; }
-        /// <summary>
-        /// Returns the nubmer loosses.
-        /// </summary>
-        /// <returns>Number of loosses.</returns>
-        public int ReturnLoosses() { return this.loosses; }
-        /// <summary>
-        /// Returns the number of draws.
-        /// </summary>
-        /// <returns>Number of draws.</returns>
-        public int ReturnDraws() { return this.draws; }
+        
         #endregion
     }
 }
