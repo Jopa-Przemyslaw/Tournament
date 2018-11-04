@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="ConsoleDisplayOld.cs" />
     <Compile Include="ConsoleDisplaySystem.cs" />
+    <Compile Include="Cup.cs" />
     <Compile Include="FootballMatch.cs" />
     <Compile Include="Match.cs" />
     <Compile Include="MatchEngine.cs" />
