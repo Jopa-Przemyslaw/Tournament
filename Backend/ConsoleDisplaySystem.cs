@@ -26,6 +26,7 @@ namespace Backend
         /// <returns>Nothing. Endless true while loop. Exits on command 'Environment.Exit(0);'.</returns>
         public static int DrawMenu(ref List<Team> listOfTeams, ref List<Referee> listOfReferees)
         {
+            Console.CursorVisible = false;
             int choosenOption = 0;
             while (true)
             {
