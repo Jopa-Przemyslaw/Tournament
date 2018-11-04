@@ -54,11 +54,11 @@ namespace Backend
 
         #region Methods
         /// <summary>
-        /// Adds the <see cref="Player"/>.
+        /// Adds the <see cref="Player" /> to this <see cref="Team"/>.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <param name="surname">The surname.</param>
-        public void AddPlayer(string name, string surname) { playersList.Add(new Player(name, surname)); }
+        public void AddPlayer(string name, string surname) { playersList.Add(new Player(name, surname, this)); }
         /// <summary>
         /// Removes the <see cref="Player" /> by the position on playersList.
         /// </summary>
