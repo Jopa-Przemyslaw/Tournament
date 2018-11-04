@@ -635,7 +635,7 @@ namespace Backend
                             if (listaDruzyn.Any() == true)
                             {
                                 nrDruzyny = WybierzZListyDruzyneIWykonajNaNiejOperacje(listaDruzyn, "ZwrocNr");
-                                listaDruzyn.ElementAt(nrDruzyny).RemovePlayer();
+                                listaDruzyn.ElementAt(nrDruzyny).RemovePlayer(nrDruzyny);
                             }
                             else
                                 Console.WriteLine("Pusto, nie ma zadnej druzyny, ani zawodnikow");
