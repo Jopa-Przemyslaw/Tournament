@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Backend
 {
-    class ConsoleDisplay
+    class ConsoleDisplayOld
     {
         public const int stalaZawodnikow = 5;
         public const int minimalnaIloscDruzynDoTurniejuSiatkowki = 8;
