@@ -116,7 +116,7 @@ namespace Backend
             this.playersTeam = playersTeam;
             this.matchesPlayed = matchesPlayed;
             this.goalsScored = goalsScored;
-            this.trophiesWon = 0;
+            this.trophiesWon = trophiesWon;
         }
         #endregion
 
