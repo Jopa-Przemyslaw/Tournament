@@ -18,6 +18,34 @@ namespace Backend
         private Referee suppRef2;
         #endregion
 
+        #region Getters N Setters
+        /// <summary>
+        /// Returns the main <see cref="Referee"/>.
+        /// </summary>
+        /// <returns>Object typeof <see cref="Referee"/>.</returns>
+        public Referee ReturnMainReferee() => this.mainReferee;
+        /// <summary>
+        /// Returns the first supporting <see cref="Referee"/>.
+        /// </summary>
+        /// <returns>Object typeof <see cref="Referee"/>.</returns>
+        public Referee ReturnSuppRef1() => this.suppRef1;
+        /// <summary>
+        /// Returns the second supporting <see cref="Referee"/>.
+        /// </summary>
+        /// <returns>Object typeof <see cref="Referee"/>.</returns>
+        public Referee ReturnSuppRef2() => this.suppRef2;
+        /// <summary>
+        /// Returns the <see cref="Team"/> a.
+        /// </summary>
+        /// <returns>Object typeof <see cref="Team"/>.</returns>
+        public Team ReturnTeamA() => this.teamA;
+        /// <summary>
+        /// Returns the <see cref="Team"/> b.
+        /// </summary>
+        /// <returns>Object typeof <see cref="Team"/>.</returns>
+        public Team ReturnTeamB() => this.teamB;
+        #endregion
+
         #region Constructors
         /// <summary>
         /// Initializes a new instance of the <see cref="FootballMatch"/> class.
@@ -67,31 +95,7 @@ namespace Backend
             return matchScore.GetScoreOfTeamB();
         }
 
-        /// <summary>
-        /// Returns the main <see cref="Referee"/>.
-        /// </summary>
-        /// <returns>Object typeof <see cref="Referee"/>.</returns>
-        public Referee ReturnMainReferee() => this.mainReferee;
-        /// <summary>
-        /// Returns the first supporting <see cref="Referee"/>.
-        /// </summary>
-        /// <returns>Object typeof <see cref="Referee"/>.</returns>
-        public Referee ReturnSuppRef1() => this.suppRef1;
-        /// <summary>
-        /// Returns the second supporting <see cref="Referee"/>.
-        /// </summary>
-        /// <returns>Object typeof <see cref="Referee"/>.</returns>
-        public Referee ReturnSuppRef2() => this.suppRef2;
-        /// <summary>
-        /// Returns the <see cref="Team"/> a.
-        /// </summary>
-        /// <returns>Object typeof <see cref="Team"/>.</returns>
-        public Team ReturnTeamA() => this.teamA;
-        /// <summary>
-        /// Returns the <see cref="Team"/> b.
-        /// </summary>
-        /// <returns>Object typeof <see cref="Team"/>.</returns>
-        public Team ReturnTeamB() => this.teamB;
+        
         #endregion
     }
 }
