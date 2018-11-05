@@ -6,7 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using static Backend.ConsoleDisplay;
+//using static Backend.ConsoleDisplayOld;
+using static Backend.ConsoleDisplaySystem;
 
 namespace Backend
 {
@@ -30,13 +31,17 @@ namespace Backend
             listOfTeams.Add(new Team("teamK", 23));
             listOfTeams.Add(new Team("teamL", 23));
 
-            listOfReferees.Add(new Referee("Sedzia", "Kalosz0"));
-            listOfReferees.Add(new Referee("Sedzia", "Kalosz1"));
-            listOfReferees.Add(new Referee("Sedzia", "Kalosz2"));
-            listOfReferees.Add(new Referee("Sedzia", "Kalosz3"));
-            listOfReferees.Add(new Referee("Sedzia", "Kalosz4"));
+            listOfTeams.ElementAt(0).AddPlayer("PlayerName", "PlayerSurnameA");
+            listOfTeams.ElementAt(0).AddPlayer("PlayerName", "PlayerSurnameB");
+            listOfTeams.ElementAt(0).AddPlayer("PlayerName", "PlayerSurnameC");
 
-            FootballMatch footballMatch = new FootballMatch(new Referee("sedzia", "Glowny"),
+            listOfReferees.Add(new Referee("Referee", "Noname0"));
+            listOfReferees.Add(new Referee("Referee", "Noname1"));
+            listOfReferees.Add(new Referee("Referee", "Noname2"));
+            listOfReferees.Add(new Referee("Referee", "Noname3"));
+            listOfReferees.Add(new Referee("Referee", "Noname4"));
+
+            FootballMatch footballMatch = new FootballMatch(new Referee("refereeNAME", "refSURNAME"),
                                                             new Team("druzynaA", 23), (listOfTeams.ElementAt(0)),
                                                             new Referee("Sedzia", "Boczny1"), new Referee("Sedzia", "Boczny2"));
 
@@ -47,7 +52,9 @@ namespace Backend
             //Debug.WriteLine($"It tooks: {watch.ElapsedMilliseconds/1000}s.");
             Debug.WriteLine($"{footballMatch.ReturnTeamA().name} {footballMatch.GetScoreOfTeamA()} : {footballMatch.GetScoreOfTeamB()} {footballMatch.ReturnTeamB().name}. ");
 
-            #region Console Display
+            DrawMenu(ref listOfTeams, ref listOfReferees);
+
+            #region Console Display Old
             //List<Rozgrywki> listaTurniejowa = new List<Rozgrywki>();
             //for (int i = 0; i < listOfTeams.Count; i++)
             //{
