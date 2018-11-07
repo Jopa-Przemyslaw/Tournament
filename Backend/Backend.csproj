@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuxiliaryClasses\ThreeReferees.cs" />
+    <Compile Include="AuxiliaryClasses\TwoTeams.cs" />
     <Compile Include="ConsoleDisplayOld.cs" />
     <Compile Include="ConsoleDisplaySystem.cs" />
     <Compile Include="Cup.cs" />
