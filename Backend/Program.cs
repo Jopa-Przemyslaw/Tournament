@@ -51,7 +51,15 @@ namespace Backend
             //watch.Stop();
             //Debug.WriteLine($"It tooks: {watch.ElapsedMilliseconds/1000}s.");
             Debug.WriteLine($"{footballMatch.ReturnTeamA().name} {footballMatch.GetScoreOfTeamA()} : {footballMatch.GetScoreOfTeamB()} {footballMatch.ReturnTeamB().name}. ");
-
+            Cup cup = new Cup(listOfTeams, listOfReferees);
+            var winner = cup.StartFootballCup();
+            try
+            {
+            }
+            catch (Exception e)
+            {
+                Debug.Write(e.Message);
+            }
             DrawMenu(ref listOfTeams, ref listOfReferees);
 
             #region Console Display Old
