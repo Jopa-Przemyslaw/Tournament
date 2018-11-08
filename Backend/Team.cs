@@ -6,7 +6,7 @@ using System.Linq;
 namespace Backend
 {
     /// <summary>
-    /// Representation of the <see cref="Team"/> class.
+    /// Representation of the <see cref="Team" /> class.
     /// </summary>
     class Team
     {
@@ -34,6 +34,10 @@ namespace Backend
         /// The wins, looses or draws.
         /// </summary>
         private int wins, loosses, draws;
+        /// <summary>
+        /// The tournaments won.
+        /// </summary>
+        private int tournamentsWon;
         #endregion
 
         #region Getters N Setters
@@ -72,6 +76,40 @@ namespace Backend
         /// </summary>
         /// <returns>Number of draws.</returns>
         public int ReturnDraws() => this.draws;
+        /// <summary>
+        /// Returns the number of tournaments won.
+        /// </summary>
+        /// <returns>Number of tournaments won.</returns>
+        public int ReturnTournamentsWon() => this.tournamentsWon;
+
+        /// <summary>
+        /// Adds the goal scored.
+        /// </summary>
+        public void AddGoalScored() => goalsScored++;
+        /// <summary>
+        /// Adds the goal lost.
+        /// </summary>
+        public void AddGoalLost() => goalsLost++;
+        /// <summary>
+        /// Adds the match played.
+        /// </summary>
+        public void AddMatchPlayed() => matchesPlayed++;
+        /// <summary>
+        /// Adds the win.
+        /// </summary>
+        public void AddWin() => wins++;
+        /// <summary>
+        /// Adds the loss.
+        /// </summary>
+        public void AddLoss() => loosses++;
+        /// <summary>
+        /// Adds the draw.
+        /// </summary>
+        public void AddDraw() => draws++;
+        /// <summary>
+        /// Adds the tournament won.
+        /// </summary>
+        public void AddTournamentWon() => tournamentsWon++;
         #endregion
 
         #region Constructors
@@ -124,13 +162,13 @@ namespace Backend
         /// Returns number of <see cref="Player"/>s in <see cref="Team"/>.
         /// </summary>
         /// <returns>Object of <see cref="int"/> type.</returns>
-        public int ReturnTeamCount() { return playersList.Count; }        
+        public int ReturnTeamCount() { return playersList.Count; }
         /// <summary>
         /// Returns the <see cref="Team"/>.
         /// </summary>
         /// <returns>Object of <see cref="Team"/> type.</returns>
         public Team ReturnTeam() { return this; }
-        
+
         #endregion
     }
 }
