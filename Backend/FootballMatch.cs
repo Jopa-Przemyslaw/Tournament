@@ -11,11 +11,11 @@ namespace Backend
         /// <summary>
         /// The first supporting <see cref="Referee"/>.
         /// </summary>
-        private Referee suppRef1;
+        private readonly Referee suppRef1;
         /// <summary>
         /// The second supporting <see cref="Referee"/>.
         /// </summary>
-        private Referee suppRef2;
+        private readonly Referee suppRef2;
         #endregion
 
         #region Getters N Setters
@@ -70,6 +70,8 @@ namespace Backend
         public void AddScoreToTeamA()
         {
             matchScore.AddScoreToTeamA();
+            teamA.AddGoalScored();
+            teamB.AddGoalLost();
         }
         /// <summary>
         /// Adds the score to <see cref="Team"/> b.
@@ -77,6 +79,8 @@ namespace Backend
         public void AddScoreToTeamB()
         {
             matchScore.AddScoreToTeamB();
+            teamB.AddGoalScored();
+            teamA.AddGoalLost();
         }
         /// <summary>
         /// Gets the score of <see cref="Team"/> a.
