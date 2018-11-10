@@ -26,8 +26,16 @@ namespace Backend
         /// </summary>
         public Cup()
         {
-            //listOfTeamsInCup = new List<Team>();
+            listOfTeamsInCup = new List<Team>();
+            listOfRefereesInCup = new List<Referee>();
+            random = new Random();
+            matchEngine = new MatchEngine();
         }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Cup" /> class.
+        /// </summary>
+        /// <param name="listOfTeamsInCup">The list of <see cref="Team"/>s in <see cref="Cup"/>.</param>
+        /// <param name="listOfRefereesInCup">The list of <see cref="Referee"/>s in <see cref="Cup"/>.</param>
         public Cup(List<Team> listOfTeamsInCup, List<Referee> listOfRefereesInCup)
         {
             this.listOfTeamsInCup = new List<Team>(listOfTeamsInCup);
@@ -37,7 +45,7 @@ namespace Backend
         }
 
         /// <summary>
-        /// Adds the <see cref="Team"/> to the list.
+        /// Adds the <see cref="Team"/> to the list of <see cref="Team"/>s in <see cref="Cup"/>.
         /// </summary>
         /// <param name="team">The <see cref="Team"/> to add to a <see cref="Cup"/>.</param>
         public void AddTeam(Team team)
@@ -53,10 +61,26 @@ namespace Backend
         {
             return listOfTeamsInCup.ElementAt(index);
         }
+        /// <summary>
+        /// Adds the <see cref="Referee"/> to the list of <see cref="Referee"/>s in <see cref="Cup"/>.
+        /// </summary>
+        /// <param name="referee">The <see cref="Referee"/> to add to a <see cref="Cup"/>.</param>
+        public void AddReferee(Referee referee)
+        {
+            listOfRefereesInCup.Add(referee);
+        }
+        /// <summary>
+        /// Returns the <see cref="Referee"/> that takes part in the <see cref="Cup"/>.
+        /// </summary>
+        /// <param name="index">The <see cref="Referee"/>'s index in list.</param>
+        /// <returns><see cref="Referee"/> from the list of <see cref="Referee"/>s taking part in the <see cref="Cup"/>.</returns>
+        public Referee ReturnReferee(int index)
+        {
+            return listOfRefereesInCup.ElementAt(index);
+        }
 
         public Team StartFootballCup()
         {
-            //TODO: Implement StartCup method in Cup class.
             int teamsInCup = listOfTeamsInCup.Count();
             int refereesInCup = listOfRefereesInCup.Count();
             if (teamsInCup < 8 && refereesInCup < 3)
@@ -77,11 +101,7 @@ namespace Backend
                 Referee suppRef2 = referees.GetSupportingReferee2;
 
                 FootballMatch footballMatch = new FootballMatch(mainReferee, teamA, teamB, suppRef1, suppRef2);
-                while (footballMatch.GetScoreOfTeamA() == footballMatch.GetScoreOfTeamB())
-                {
-                    // Implement "play-off" method in MatchEngine.cs so that this while loop can be deleted.
-                    matchEngine.SymulateFootballMatch(ref footballMatch);
-                }
+                matchEngine.SimulateFootballMatch(ref footballMatch, true);
                 if (footballMatch.GetScoreOfTeamA() > footballMatch.GetScoreOfTeamB())
                 {
                     listOfTeamsInCup.Remove(teamB);
@@ -91,6 +111,7 @@ namespace Backend
                     listOfTeamsInCup.Remove(teamA);
                 }
             }
+
             return listOfTeamsInCup.ElementAt(0);
         }
 
