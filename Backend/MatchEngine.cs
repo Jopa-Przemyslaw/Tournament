@@ -197,6 +197,8 @@ namespace Backend
                 footballMatch.ReturnTeamA().AddDraw();
                 footballMatch.ReturnTeamB().AddDraw();
             }
+            footballMatch.ReturnTeamA().AddMatchPlayed();
+            footballMatch.ReturnTeamB().AddMatchPlayed();
         }
 
         /// <summary>
