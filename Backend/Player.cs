@@ -14,7 +14,7 @@ namespace Backend
         /// <value>
         /// The <see cref="Player" />'s <see cref="Team" />.
         /// </value>
-        public Team playersTeam { get; private set; }
+        public Team playerTeam { get; private set; }
         /// <summary>
         /// The amount of <see cref="Match" />es played by the <see cref="Player" />.
         /// </summary>
@@ -57,8 +57,24 @@ namespace Backend
         /// <summary>
         /// Sets the <see cref="Team"/> for the <see cref="Player"/>.
         /// </summary>
-        /// <param name="playersTeam">The <see cref="Player"/>'s <see cref="Team"/>.</param>
-        public void SetTeam(Team playersTeam) => this.playersTeam = playersTeam;
+        /// <param name="playerTeam">The <see cref="Player"/>'s <see cref="Team"/>.</param>
+        public void SetTeam(Team playerTeam)
+        {
+            if (playerTeam != null)
+            {
+                if (playerTeam.playersList.Capacity > playerTeam.ReturnTeamCount())
+                {
+                    this.playerTeam = playerTeam;
+                    playerTeam.AddPlayer(this);
+                }
+                else
+                    throw new System.Exception("Team is already full.");
+            }
+            else
+            {
+                this.playerTeam = playerTeam;
+            }
+        }
         /// <summary>
         /// Sets the amount of goals scored by the <see cref="Player" />.
         /// </summary>
@@ -84,7 +100,7 @@ namespace Backend
         /// <param name="surname">The <see cref="Player"/>'s surname.</param>
         public Player(string name, string surname) : base(name, surname)
         {
-            playersTeam = null;
+            playerTeam = null;
             matchesPlayed = 0;
             goalsScored = 0;
             trophiesWon = 0;
@@ -97,7 +113,13 @@ namespace Backend
         /// <param name="playersTeam">The <see cref="Player"/>'s <see cref="Team"/>.</param>
         public Player(string name, string surname, Team playersTeam) : base(name, surname)
         {
-            this.playersTeam = playersTeam;
+            if (playersTeam.playersList.Capacity > playersTeam.ReturnTeamCount())
+            {
+                this.playerTeam = playersTeam;
+                playersTeam.AddPlayer(this);
+            }
+            else
+                throw new System.Exception($"Team \"{playersTeam.name}\" is already full.");
             matchesPlayed = 0;
             goalsScored = 0;
             trophiesWon = 0;
@@ -113,7 +135,7 @@ namespace Backend
         /// <param name="trophiesWon">The amount of trophies won by the <see cref="Player"/>.</param>
         public Player(string name, string surname, Team playersTeam, int matchesPlayed, int goalsScored, int trophiesWon) : base(name, surname)
         {
-            this.playersTeam = playersTeam;
+            this.playerTeam = playersTeam;
             this.matchesPlayed = matchesPlayed;
             this.goalsScored = goalsScored;
             this.trophiesWon = trophiesWon;
