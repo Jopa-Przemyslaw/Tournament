@@ -10,6 +10,7 @@ namespace Backend
     /// </summary>
     class Team
     {
+        //TODO: Add statistics to players stats.
         #region Variables
         /// <summary>
         /// Gets the name of the <see cref="Team"/>.
@@ -19,25 +20,62 @@ namespace Backend
         /// </value>
         public string name { get; private set; }
         /// <summary>
-        /// The <see cref="Player"/>'s list.
+        /// Gets the <see cref="Player" />'s list.
         /// </summary>
-        private List<Player> playersList;
+        /// <value>
+        /// The players list.
+        /// </value>
+        public List<Player> playersList { get; private set; }
         /// <summary>
-        /// The goals scored or lost.
+        /// The goals scored.
         /// </summary>
-        private int goalsScored, goalsLost;
+        /// <value>
+        /// The goals scored.
+        /// </value>
+        public int goalsScored { get; private set; }
+        /// <summary>
+        /// Gets the goals lost.
+        /// </summary>
+        /// <value>
+        /// The goals lost.
+        /// </value>
+        public int goalsLost { get; private set; }
         /// <summary>
         /// The matches played.
         /// </summary>
-        private int matchesPlayed;
+        /// <value>
+        /// The matches played.
+        /// </value>
+        public int matchesPlayed { get; private set; }
         /// <summary>
-        /// The wins, looses or draws.
+        /// The wins.
         /// </summary>
-        private int wins, loosses, draws;
+        /// <value>
+        /// The wins.
+        /// </value>
+        public int wins { get; private set; }
+        /// <summary>
+        /// Gets the loosses.
+        /// </summary>
+        /// <value>
+        /// The loosses.
+        /// </value>
+        public int lost { get; private set; }
+        /// <summary>
+        /// Gets the draws.
+        /// </summary>
+        /// <value>
+        /// The draws.
+        /// </value>
+        public int draws { get; private set; }
         /// <summary>
         /// The tournaments won.
         /// </summary>
-        private int tournamentsWon;
+        /// <value>
+        /// The tournaments won.
+        /// </value>
+        public int tournamentsWon { get; private set; }
+
         #endregion
 
         #region Getters N Setters
@@ -45,43 +83,27 @@ namespace Backend
         /// Returns the list of <see cref="Player"/>'s.
         /// </summary>
         /// <returns>List of <see cref="Player"/>s in the <see cref="Team"/>.</returns>
-        public List<Player> ReturnPlayers() => this.playersList;
-        /// <summary>
-        /// Returns the number of goals scored by <see cref="Team"/>.
-        /// </summary>
-        /// <returns>Number of goals scored by <see cref="Team"/>.</returns>
-        public int ReturnGoalsScored() => this.goalsScored;
-        /// <summary>
-        /// Returns the number of goals lost by <see cref="Team"/>.
-        /// </summary>
-        /// <returns>Number of goals lost by <see cref="Team"/>.</returns>
-        public int ReturnGoalsLost() => this.goalsLost;
-        /// <summary>
-        /// Returs the number matches played by <see cref="Team"/>.
-        /// </summary>
-        /// <returns>Number of matches played by <see cref="Team"/>.</returns>
-        public int ReturMatchesPlayed() => this.matchesPlayed;
-        /// <summary>
-        /// Returns the number of wins.
-        /// </summary>
-        /// <returns>Number of wins.</returns>
-        public int ReturnWins() => this.wins;
-        /// <summary>
-        /// Returns the nubmer loosses.
-        /// </summary>
-        /// <returns>Number of loosses.</returns>
-        public int ReturnLoosses() => this.loosses;
-        /// <summary>
-        /// Returns the number of draws.
-        /// </summary>
-        /// <returns>Number of draws.</returns>
-        public int ReturnDraws() => this.draws;
-        /// <summary>
-        /// Returns the number of tournaments won.
-        /// </summary>
-        /// <returns>Number of tournaments won.</returns>
-        public int ReturnTournamentsWon() => this.tournamentsWon;
+        public List<Player> GetPlayers() => this.playersList;
 
+        #endregion
+
+        #region Constructors
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Team" /> class.
+        /// </summary>
+        /// <param name="name">The name of the <see cref="Team"/>.</param>
+        /// <param name="number">The number of <see cref="Player"/>s.</param>
+        public Team(string name, int number)
+        {
+            this.name = name;
+            playersList = new List<Player>(number);
+            goalsScored = 0; goalsLost = 0;
+            matchesPlayed = 0;
+            wins = 0; lost = 0; draws = 0;
+        }
+        #endregion
+
+        #region Methods
         /// <summary>
         /// Adds the goal scored.
         /// </summary>
@@ -101,7 +123,7 @@ namespace Backend
         /// <summary>
         /// Adds the loss.
         /// </summary>
-        public void AddLoss() => loosses++;
+        public void AddLoss() => lost++;
         /// <summary>
         /// Adds the draw.
         /// </summary>
@@ -110,31 +132,20 @@ namespace Backend
         /// Adds the tournament won.
         /// </summary>
         public void AddTournamentWon() => tournamentsWon++;
-        #endregion
-
-        #region Constructors
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Team" /> class.
-        /// </summary>
-        /// <param name="name">The name of the <see cref="Team"/>.</param>
-        /// <param name="number">The number of <see cref="Player"/>s.</param>
-        public Team(string name, int number)
-        {
-            this.name = name;
-            playersList = new List<Player>(number);
-            goalsScored = 0; goalsLost = 0;
-            matchesPlayed = 0;
-            wins = 0; loosses = 0; draws = 0;
-        }
-        #endregion
-
-        #region Methods
         /// <summary>
         /// Adds the <see cref="Player" /> to this <see cref="Team"/>.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <param name="surname">The surname.</param>
-        public void AddPlayer(string name, string surname) { playersList.Add(new Player(name, surname, this)); }
+        public void AddPlayer(Player player)
+        {
+            if (playersList.Capacity > playersList.Count())
+            {
+                playersList.Add(player);
+            }
+            else
+                throw new Exception("Team is already full.");
+        }
         /// <summary>
         /// Removes the <see cref="Player" /> by the position on playersList.
         /// </summary>
@@ -170,5 +181,10 @@ namespace Backend
         public Team ReturnTeam() { return this; }
 
         #endregion
+
+        public override string ToString()
+        {
+            return base.ToString() + ", name: " + this.name;
+        }
     }
 }
