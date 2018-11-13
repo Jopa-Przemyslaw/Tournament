@@ -14,17 +14,17 @@ namespace Backend
         /// The <see cref="string"/> <see cref="Array"/> of options in menu.
         /// </summary>
         private static readonly string[] optionsMenu = new string[] { "Create team", "Delete team", "Teams preview",
-                "\nAdd player", "Remove player", "Players preview",
+                "\nCreate player", "Create player with team", "Add player to a team", "Remove player from team", "Remove player", "Players preview",
                 "\nAdd referee", "Remove referee", "Referee preview",
-                "\nSign up team for a cup", "Coming soon...", "Coming soon...",
-                "\nComing soon...", "Coming soon...", "Coming soon...", "Coming soon...",
+                "\nCreate new cup", "Sign up team for a cup", "Sign up referee for a cup", "Check out teams of a cup", "Cup teams preview", "Cup referees preview", "Cup's referees preview",
+                "\nStart a football cup", "Show cups scoreboard",
                 "\nComing soon...", "Coming soon...", "Exit" };
         /// <summary>
         /// Draws the menu.
         /// </summary>
         /// <param name="listOfTeams">The list of <see cref="Team"/>s.</param>
         /// <returns>Nothing. Endless true while loop. Exits on command 'Environment.Exit(0);'.</returns>
-        public static int DrawMenu(ref List<Team> listOfTeams, ref List<Referee> listOfReferees)
+        public static int DrawMenu(ref List<Player> listOfPlayers, ref List<Team> listOfTeams, ref List<Referee> listOfReferees, ref List<Cup> listOfCups)
         {
             Console.CursorVisible = false;
             int choosenOption = 0;
@@ -54,7 +54,7 @@ namespace Backend
                     case ConsoleKey.Enter:
                         if (optionsMenu[choosenOption] == "Exit")
                             Environment.Exit(0);
-                        //*********************** TEAM PARAGRAPH *****************************\\
+                        //*********************** TEAM PARAGRAPH ***********************\\
                         else if (optionsMenu[choosenOption] == "Create team")
                         {
                             CreateTeamInMenu(ref listOfTeams);
@@ -64,39 +64,138 @@ namespace Backend
                         {
                             int x = SelectTeamIndex(listOfTeams);
                             if (x >= 0)
+                            {
+                                foreach(Player player in listOfTeams.ElementAt(x).playersList)
+                                {
+                                    player.SetTeam(null);
+                                }
+                                foreach(Cup cup in listOfCups)
+                                {
+                                    cup.RemoveTeam(listOfTeams.ElementAt(x));
+                                }
                                 listOfTeams.RemoveAt(x);
+                            }
                             Thread.Sleep(500);
                         }
                         else if (optionsMenu[choosenOption] == "Teams preview")
                         {
-                            SelectTeamIndex(listOfTeams);
+                            int w = -1;
+                            while (w == -1)
+                            {
+                                int x = SelectTeamIndex(listOfTeams);
+                                if (x >= 0)
+                                {
+                                    try
+                                    {
+                                        w = DisplayTeamStats(listOfTeams.ElementAt(x));
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        Debug.WriteLine(e.Message);
+                                    }
+                                }
+                                else
+                                {
+                                    w = -2;
+                                }
+                                Thread.Sleep(500);
+                            }
+                        }
+                        //*********************** PLAYER PARAGRAPH ***********************\\
+                        else if (optionsMenu[choosenOption] == "\nCreate player")
+                        {
+                            CreatePlayerInMenu(ref listOfPlayers);
                             Thread.Sleep(500);
                         }
-                        //*********************** PLAYER PARAGRAPH *****************************\\
-                        else if (optionsMenu[choosenOption] == "\nAdd player")
+                        else if (optionsMenu[choosenOption] == "Create player with team")
                         {
                             int x = SelectTeamIndex(listOfTeams);
                             if (x >= 0)
                             {
-                                CreatePlayerInTeamInMenu(ref listOfTeams, x);
+                                CreatePlayerInTeamInMenu(ref listOfPlayers, ref listOfTeams, x);
                             }
                             Thread.Sleep(500);
                         }
+                        else if (optionsMenu[choosenOption] == "Add player to a team")
+                        {
+                            int w = -1;
+                            while (w == -1)
+                            {
+                                int x = SelectPlayerIndex(listOfPlayers);
+                                if (x >= 0)
+                                {
+                                    if (listOfPlayers.ElementAt(x).playerTeam == null)
+                                    {
+                                        int y = SelectTeamIndex(listOfTeams);
+                                        if (y >= 0)
+                                        {
+                                            listOfPlayers.ElementAt(x).SetTeam(listOfTeams.ElementAt(y));
+                                        }
+                                    }
+                                    else
+                                    {
+                                        DisplayFailure(listOfPlayers.Count + 4, "This player already has a team.");
+                                    }
+                                }
+                                else
+                                {
+                                    w = -2;
+                                }
+                                Thread.Sleep(500);
+                            }
+                        }
+                        else if (optionsMenu[choosenOption] == "Remove player from team")
+                        {
+                            int w = -1;
+                            while (w == -1)
+                            {
+                                int x = SelectPlayerIndex(listOfPlayers);
+                                if (x >= 0)
+                                {
+                                    if (listOfPlayers.ElementAt(x).playerTeam != null)
+                                    {
+                                        listOfPlayers.ElementAt(x).playerTeam.playersList.Remove(listOfPlayers.ElementAt(x));
+                                        listOfPlayers.ElementAt(x).SetTeam(null);
+                                    }
+                                    else
+                                    {
+                                        DisplayFailure(listOfPlayers.Count + 4, "This player has no team.");
+                                    }
+                                }
+                                else
+                                {
+                                    w = -2;
+                                }
+                                Thread.Sleep(500);
+                            }
+                        }
                         else if (optionsMenu[choosenOption] == "Remove player")
                         {
-                            int x = SelectTeamIndex(listOfTeams);
-                            int y = SelectPlayerIndex(listOfTeams.ElementAt(x));
-                            listOfTeams.ElementAt(x).RemovePlayer(y);
-                            Thread.Sleep(500);
+                            int w = -1;
+                            while (w == -1)
+                            {
+                                int x = SelectPlayerIndex(listOfPlayers);
+                                if (x >= 0)
+                                {
+                                    if (listOfPlayers.ElementAt(x).playerTeam != null)
+                                    {
+                                        listOfPlayers.ElementAt(x).playerTeam.playersList.Remove(listOfPlayers.ElementAt(x));
+                                    }
+                                    listOfPlayers.RemoveAt(x);
+                                }
+                                else
+                                {
+                                    w = -2;
+                                }
+                                Thread.Sleep(500);
+                            }
                         }
                         else if (optionsMenu[choosenOption] == "Players preview")
                         {
-                            int x = SelectTeamIndex(listOfTeams);
-                            if (x >= 0)
-                                SelectPlayerIndex(listOfTeams.ElementAt(x));
+                            int x = SelectPlayerIndex(listOfPlayers);
                             Thread.Sleep(500);
                         }
-                        //*********************** REFEREE PARAGRAPH *****************************\\
+                        //*********************** REFEREE PARAGRAPH ***********************\\
                         else if (optionsMenu[choosenOption] == "\nAdd referee")
                         {
                             CreateRefereeInMenu(ref listOfReferees);
@@ -105,7 +204,14 @@ namespace Backend
                         else if (optionsMenu[choosenOption] == "Remove referee")
                         {
                             int x = SelectRefereeIndex(listOfReferees);
-                            listOfReferees.RemoveAt(x);
+                            if (x >= 0)
+                            {
+                                foreach(Cup cup in listOfCups)
+                                {
+                                    cup.RemoveReferee(listOfReferees.ElementAt(x));
+                                }
+                                listOfReferees.RemoveAt(x);
+                            }
                             Thread.Sleep(500);
                         }
                         else if (optionsMenu[choosenOption] == "Referee preview")
@@ -113,10 +219,108 @@ namespace Backend
                             SelectRefereeIndex(listOfReferees);
                             Thread.Sleep(500);
                         }
-                        //*********************** TOURNAMENT PARAGRAPH *****************************\\
-                        else if(optionsMenu[choosenOption]=="\nSign up team for a cup")
+                        //*********************** CUP PARAGRAPH ***********************\\
+                        else if (optionsMenu[choosenOption] == "\nCreate new cup")
                         {
-                            
+                            CreateCupInMenu(ref listOfCups);
+                            Thread.Sleep(500);
+                        }
+                        else if (optionsMenu[choosenOption] == "Sign up team for a cup")
+                        {
+                            int x = SelectCupIndex(listOfCups);
+                            if (x >= 0 && !listOfCups.ElementAt(x).isFinished)
+                            {
+                                int y = SelectTeamIndex(listOfTeams);
+                                if (y >= 0)
+                                {
+                                    listOfCups.ElementAt(x).AddTeam(listOfTeams.ElementAt(y));
+                                }
+                            }
+                            Thread.Sleep(500);
+                        }
+                        else if (optionsMenu[choosenOption] == "Sign up referee for a cup")
+                        {
+                            int x = SelectCupIndex(listOfCups);
+                            if (x >= 0 && !listOfCups.ElementAt(x).isFinished)
+                            {
+                                int y = SelectRefereeIndex(listOfReferees);
+                                if (y >= 0)
+                                {
+                                    listOfCups.ElementAt(x).AddReferee(listOfReferees.ElementAt(y));
+                                }
+                            }
+                            Thread.Sleep(500);
+                        }
+                        else if (optionsMenu[choosenOption] == "Check out teams of a cup")
+                        {
+                            int x = SelectCupIndex(listOfCups);
+                            if (x >= 0 && !listOfCups.ElementAt(x).isFinished)
+                            {
+                                int y = SelectTeamIndex(listOfCups.ElementAt(x).listOfTeamsInCup);
+                                if (y >= 0)
+                                {
+                                    listOfCups.ElementAt(x).RemoveTeam(listOfCups.ElementAt(x).listOfTeamsInCup.ElementAt(y));
+                                }
+                            }
+                            Thread.Sleep(500);
+                        }
+                        else if (optionsMenu[choosenOption] == "Cup teams preview")
+                        {
+                            int w = -1;
+                            while (w == -1)
+                            {
+                                int x = SelectCupIndex(listOfCups);
+                                if (x >= 0)
+                                {
+                                    w = SelectTeamIndex(listOfCups.ElementAt(x).listOfTeamsInCup);
+                                }
+                                else
+                                {
+                                    w = -2;
+                                }
+                                Thread.Sleep(500);
+                            }
+                        }
+                        else if (optionsMenu[choosenOption] == "Cup referees preview")
+                        {
+                            int w = -1;
+                            while (w == -1)
+                            {
+                                int x = SelectCupIndex(listOfCups);
+                                if (x >= 0)
+                                {
+                                    w = SelectRefereeIndex(listOfCups.ElementAt(x).listOfRefereesInCup);
+                                }
+                                else
+                                {
+                                    w = -2;
+                                }
+                                Thread.Sleep(500);
+                            }
+                        }
+                        //*********************** TOURNAMENT PARAGRAPH ***********************\\
+                        else if (optionsMenu[choosenOption] == "\nStart a football cup")
+                        {
+                            int x = SelectCupIndex(listOfCups);
+                            if (x >= 0)
+                            {
+                                try
+                                {
+                                    var xd = listOfCups.ElementAt(x).StartFootballCup();
+                                }
+                                catch (Exception e)
+                                {
+                                    DisplayFailure(1, e.Message);
+                                    Debug.WriteLine(e.Message + " | " + e.GetType() + " | " + e.TargetSite);
+                                    Thread.Sleep(500);
+                                    Console.ReadKey();
+                                }
+                            }
+                        }
+                        else if (optionsMenu[choosenOption] == "Show cups scoreboard")
+                        {
+                            DisplayCupsScoreboard(listOfTeams);
+                            Thread.Sleep(500);
                         }
                         break;
                 }
@@ -203,6 +407,106 @@ namespace Backend
             Console.ResetColor();
         }
         /// <summary>
+        /// Displays the <see cref="Team"/> stats.
+        /// </summary>
+        /// <param name="team">The <see cref="Team"/>.</param>
+        /// <returns>Returns 1 in the end.</returns>
+        private static int DisplayTeamStats(Team team)
+        {
+            int choosen = 0;
+            string[] teamStats = new string[8];
+            teamStats[0] = "Matches played:\t\t" + team.matchesPlayed;
+            teamStats[1] = "Matches won:\t\t" + team.wins;
+            teamStats[2] = "Matches lost:\t\t" + team.lost;
+            teamStats[3] = "Matches drawn:\t\t" + team.draws;
+            teamStats[4] = "Goals scored:\t\t" + team.goalsScored;
+            teamStats[5] = "Goals lost:\t\t" + team.goalsLost;
+            teamStats[6] = "Tournaments won:\t" + team.tournamentsWon;
+            teamStats[7] = "Players in team:\t" + team.ReturnTeamCount() + "/" + team.playersList.Capacity;
+            while (true)
+            {
+                DisplayMenuHeader($"{team.name} statistics", "Use 'Enter' to leave 'Esc' to go back.");
+                DisplayMenu(teamStats, choosen);
+                DisplayMenuFooter();
+                ConsoleKeyInfo CKI = Console.ReadKey();
+                switch (CKI.Key)
+                {
+                    case ConsoleKey.Escape:
+                        DisplayFailure(teamStats.Length + 4, "cancelling...");
+                        return -1;
+                    case ConsoleKey.UpArrow:
+                        if ((choosen - 1) < 0)
+                            choosen = teamStats.Length - 1;
+                        else
+                            choosen--;
+                        break;
+                    case ConsoleKey.DownArrow:
+                        if ((choosen + 1) > teamStats.Length - 1)
+                            choosen = 0;
+                        else
+                            choosen++;
+                        break;
+                    case ConsoleKey.Enter:
+                        DisplaySuccess(teamStats.Length + 4, "action successfull");
+                        return choosen;
+                }
+            }
+
+        }
+        /// <summary>
+        /// Displays the <see cref="Cup" />s scoreboard of <see cref="Team"/>s and numbers of tournaments they have won. List sorted by tournament points.
+        /// </summary>
+        /// <param name="listOfTeams">The list of <see cref="Team" />s.</param>
+        /// <returns>
+        /// Returns 1 in the end.
+        /// </returns>
+        private static int DisplayCupsScoreboard(List<Team> listOfTeams)
+        {
+            int choosen = 0, i = 0;
+            List<Team> sortedListOfTeams = new List<Team>(listOfTeams.OrderByDescending(raw => raw.tournamentsWon));
+
+            string[] cupScoreboard = new string[listOfTeams.Count()];
+            string[,] xd = new string[listOfTeams.Count(), 2];
+
+            foreach (Team team in sortedListOfTeams)
+            {
+                xd[i, 0] = team.name;
+                xd[i, 1] = team.tournamentsWon.ToString();
+                i++;
+            }
+            for (i = 0; i < listOfTeams.Count(); i++)
+                cupScoreboard[i] = xd[i, 0] + ":\t" + xd[i, 1];
+
+            while (true)
+            {
+                DisplayMenuHeader($"Cups scoreboard", "Use 'Enter' or 'Esc' to go back.");
+                DisplayMenu(cupScoreboard, choosen);
+                DisplayMenuFooter();
+                ConsoleKeyInfo CKI = Console.ReadKey();
+                switch (CKI.Key)
+                {
+                    case ConsoleKey.Escape:
+                        DisplayFailure(cupScoreboard.Length + 4, "cancelling...");
+                        return -1;
+                    case ConsoleKey.UpArrow:
+                        if ((choosen - 1) < 0)
+                            choosen = cupScoreboard.Length - 1;
+                        else
+                            choosen--;
+                        break;
+                    case ConsoleKey.DownArrow:
+                        if ((choosen + 1) > cupScoreboard.Length - 1)
+                            choosen = 0;
+                        else
+                            choosen++;
+                        break;
+                    case ConsoleKey.Enter:
+                        DisplaySuccess(cupScoreboard.Length + 4, "action successfull");
+                        return choosen;
+                }
+            }
+        }
+        /// <summary>
         /// Creates the <see cref="Team"/> in menu.
         /// </summary>
         /// <param name="listOfTeams">The list of <see cref="Team"/>s.</param>
@@ -228,7 +532,7 @@ namespace Backend
         /// Creates the <see cref="Referee"/> in menu.
         /// </summary>
         /// <param name="listOfReferees">The list of <see cref="Referee"/>s.</param>
-        /// <returns></returns>
+        /// <returns>Returns 1 in the end.</returns>
         private static int CreateRefereeInMenu(ref List<Referee> listOfReferees)
         {
             DisplayMenuHeader("Create Referee Menu", "Type new name and surname. Confirm by 'Enter'.");
@@ -256,41 +560,142 @@ namespace Backend
             return 1;
         }
         /// <summary>
-        /// Creates the <see cref="Player"/> in selected <see cref="Team"/> in menu.
+        /// Creates the new <see cref="Player"/> in menu.
         /// </summary>
-        /// <param name="listOfTeams">The list of <see cref="Team"/>s.</param>
-        /// <param name="teamIndex">Index of the <see cref="Team"/> in list.</param>
+        /// <param name="listOfPlayers">The list of <see cref="Player"/>s.</param>
         /// <returns>Returns 1 in the end.</returns>
-        private static int CreatePlayerInTeamInMenu(ref List<Team> listOfTeams, int teamIndex)
+        private static int CreatePlayerInMenu(ref List<Player> listOfPlayers)
         {
             DisplayMenuHeader("Create Player Menu", "Type new name and surname. Confirm by 'Enter'.");
             Console.WriteLine("Player name: ");
             Console.WriteLine("Player surname: ");
             DisplayMenuFooter();
             Console.SetCursorPosition(13, 3);
-            string newName = Console.ReadLine();
-            while (string.IsNullOrWhiteSpace(newName))
+            string name = Console.ReadLine();
+            while (string.IsNullOrWhiteSpace(name))
             {
                 DisplayFailure(6, "can not be null or white spaced");
                 Console.SetCursorPosition(13, 3);
-                newName = Console.ReadLine();
+                name = Console.ReadLine();
             }
             Console.SetCursorPosition(16, 4);
-            string newSurname = Console.ReadLine();
-            while (string.IsNullOrWhiteSpace(newSurname))
+            string surname = Console.ReadLine();
+            while (string.IsNullOrWhiteSpace(surname))
             {
                 DisplayFailure(6, "can not be null or white spaced");
                 Console.SetCursorPosition(16, 4);
-                newSurname = Console.ReadLine();
+                surname = Console.ReadLine();
             }
-            listOfTeams.ElementAt(teamIndex).AddPlayer(newName, newSurname);
+
+            listOfPlayers.Add(new Player(name, surname));
             DisplaySuccess(6, "action successfull");
             return 1;
         }
         /// <summary>
-        /// Chooses the index of the team.
+        /// Creates the <see cref="Player" /> in selected <see cref="Team" /> in menu.
         /// </summary>
-        /// <param name="listOfTeams">The list of teams.</param>
+        /// <param name="listOfPlayers">The list of <see cref="Player"/>s.</param>
+        /// <param name="listOfTeams">The list of <see cref="Team" />s.</param>
+        /// <param name="teamIndex">Index of the <see cref="Team" /> in list.</param>
+        /// <returns>
+        /// Returns 1 in the end.
+        /// </returns>
+        private static int CreatePlayerInTeamInMenu(ref List<Player> listOfPlayers, ref List<Team> listOfTeams, int teamIndex)
+        {
+            DisplayMenuHeader("Create Player with Team Menu", "Type new name and surname. Confirm by 'Enter'.");
+            Console.WriteLine("Player name: ");
+            Console.WriteLine("Player surname: ");
+            DisplayMenuFooter();
+            Console.SetCursorPosition(13, 3);
+            string name = Console.ReadLine();
+            while (string.IsNullOrWhiteSpace(name))
+            {
+                DisplayFailure(6, "can not be null or white spaced");
+                Console.SetCursorPosition(13, 3);
+                name = Console.ReadLine();
+            }
+            Console.SetCursorPosition(16, 4);
+            string surname = Console.ReadLine();
+            while (string.IsNullOrWhiteSpace(surname))
+            {
+                DisplayFailure(6, "can not be null or white spaced");
+                Console.SetCursorPosition(16, 4);
+                surname = Console.ReadLine();
+            }
+            listOfPlayers.Add(new Player(name, surname, listOfTeams.ElementAt(teamIndex)));
+            DisplaySuccess(6, "action successfull");
+            return 1;
+        }
+        /// <summary>
+        /// Creates the new <see cref="Cup"/> in menu.
+        /// </summary>
+        /// <param name="listOfCups">The list of <see cref="Cup"/>s.</param>
+        /// <returns>Returns 1 in the end.</returns>
+        private static int CreateCupInMenu(ref List<Cup> listOfCups)
+        {
+            DisplayMenuHeader("Create Cup Menu", "Type new name and confirm by 'Enter'");
+            Console.WriteLine("Cup name: ");
+            DisplayMenuFooter();
+            Console.SetCursorPosition(10, 3);
+            string newName = Console.ReadLine();
+            while (string.IsNullOrWhiteSpace(newName))
+            {
+                DisplayFailure(5, "can not be null or white spaced");
+                Console.SetCursorPosition(11, 3);
+                newName = Console.ReadLine();
+            }
+            listOfCups.Add(new Cup(newName));
+            DisplaySuccess(5, "action successfull");
+            return 1;
+        }
+        /// <summary>
+        /// Selects the index of the <see cref="Player"/>.
+        /// </summary>
+        /// <param name="listOfPlayers">The list of <see cref="Player"/>s.</param>
+        /// <returns>Returns <see cref="Player"/>'s index in the list.</returns>
+        private static int SelectPlayerIndex(List<Player> listOfPlayers)
+        {
+            int choosen = 0, i = 0;
+            string[] players = new string[listOfPlayers.Count()];
+            foreach (Player player in listOfPlayers)
+            {
+                players[i] = player.GetName + " " + player.GetSurname + " | "
+                    + ((player.playerTeam != null) ? player.playerTeam.name : "no team");
+                i++;
+            }
+            while (true)
+            {
+                DisplayMenuHeader("Players List", "Use 'Enter' to select and 'Esc' to go back.");
+                DisplayMenu(players, choosen);
+                DisplayMenuFooter();
+                ConsoleKeyInfo CKI = Console.ReadKey();
+                switch (CKI.Key)
+                {
+                    case ConsoleKey.Escape:
+                        DisplayFailure(listOfPlayers.Count() + 4, "cancelling...");
+                        return -1;
+                    case ConsoleKey.UpArrow:
+                        if ((choosen - 1) < 0)
+                            choosen = listOfPlayers.Count() - 1;
+                        else
+                            choosen--;
+                        break;
+                    case ConsoleKey.DownArrow:
+                        if ((choosen + 1) > listOfPlayers.Count() - 1)
+                            choosen = 0;
+                        else
+                            choosen++;
+                        break;
+                    case ConsoleKey.Enter:
+                        DisplaySuccess(listOfPlayers.Count() + 4, "action successfull");
+                        return choosen;
+                }
+            }
+        }
+        /// <summary>
+        /// Selects the index of the <see cref="Team"/>.
+        /// </summary>
+        /// <param name="listOfTeams">The list of <see cref="Team"/>s.</param>
         /// <returns>Returns <see cref="Team"/>'s index in the list.</returns>
         private static int SelectTeamIndex(List<Team> listOfTeams)
         {
@@ -331,15 +736,15 @@ namespace Backend
             }
         }
         /// <summary>
-        /// Chooses the index of the player.
+        /// Selects the index of the <see cref="Player"/>.
         /// </summary>
-        /// <param name="team">The team.</param>
+        /// <param name="team">The <see cref="Team"/>.</param>
         /// <returns>Returns <see cref="Player"/>'s index in the list.</returns>
         private static int SelectPlayerIndex(Team team)
         {
             int choosen = 0, i = 0;
-            string[] players = new string[team.ReturnPlayers().Count()];
-            foreach (Player player in team.ReturnPlayers())
+            string[] players = new string[team.GetPlayers().Count()];
+            foreach (Player player in team.GetPlayers())
             {
                 players[i] = player.GetName + " " + player.GetSurname + "\t" + player.matchesPlayed + " " + player.goalsScored + " " + player.trophiesWon;
                 i++;
@@ -354,22 +759,22 @@ namespace Backend
                 switch (CKI.Key)
                 {
                     case ConsoleKey.Escape:
-                        DisplayFailure(team.ReturnPlayers().Count() + 4, "cancelling...");
+                        DisplayFailure(team.GetPlayers().Count() + 4, "cancelling...");
                         return -1;
                     case ConsoleKey.UpArrow:
                         if ((choosen - 1) < 0)
-                            choosen = team.ReturnPlayers().Count() - 1;
+                            choosen = team.GetPlayers().Count() - 1;
                         else
                             choosen--;
                         break;
                     case ConsoleKey.DownArrow:
-                        if ((choosen + 1) > team.ReturnPlayers().Count() - 1)
+                        if ((choosen + 1) > team.GetPlayers().Count() - 1)
                             choosen = 0;
                         else
                             choosen++;
                         break;
                     case ConsoleKey.Enter:
-                        DisplaySuccess(team.ReturnPlayers().Count() + 4, "action successfull");
+                        DisplaySuccess(team.GetPlayers().Count() + 4, "action successfull");
                         return choosen;
                 }
             }
@@ -413,6 +818,52 @@ namespace Backend
                         break;
                     case ConsoleKey.Enter:
                         DisplaySuccess(listOfReferees.Count() + 4, "action successfull");
+                        return choosen;
+                }
+            }
+        }
+        /// <summary>
+        /// Selects the index of the <see cref="Cup"/>.
+        /// </summary>
+        /// <param name="listOfCups">The list of <see cref="Cup"/>s.</param>
+        /// <returns>Returns <see cref="Cup"/>'s index in the list.</returns>
+        private static int SelectCupIndex(List<Cup> listOfCups)
+        {
+            int choosen = 0, i = 0;
+            string[] cups = new string[listOfCups.Count()];
+            foreach (Cup cup in listOfCups)
+            {
+                if (cup.isFinished)
+                    cups[i] = cup.name + " | cup finished";
+                else
+                    cups[i] = cup.name;
+                i++;
+            }
+            while (true)
+            {
+                DisplayMenuHeader("Cup List", "Use 'Enter' to select and 'Esc' to go back.");
+                DisplayMenu(cups, choosen);
+                DisplayMenuFooter();
+                ConsoleKeyInfo CKI = Console.ReadKey();
+                switch (CKI.Key)
+                {
+                    case ConsoleKey.Escape:
+                        DisplayFailure(listOfCups.Count() + 4, "cancelling...");
+                        return -1;
+                    case ConsoleKey.UpArrow:
+                        if ((choosen - 1) < 0)
+                            choosen = listOfCups.Count() - 1;
+                        else
+                            choosen--;
+                        break;
+                    case ConsoleKey.DownArrow:
+                        if ((choosen + 1) > listOfCups.Count() - 1)
+                            choosen = 0;
+                        else
+                            choosen++;
+                        break;
+                    case ConsoleKey.Enter:
+                        DisplaySuccess(listOfCups.Count() + 4, "action successfull");
                         return choosen;
                 }
             }
