@@ -13,10 +13,12 @@ namespace Backend
 {
     class Program
     {
+        public static List<Player> listOfPlayers = new List<Player>();
+        public static List<Team> listOfTeams = new List<Team>();
+        public static List<Referee> listOfReferees = new List<Referee>();
+        public static List<Cup> listOfCups = new List<Cup>();
         static void Main(string[] args)
         {
-            List<Team> listOfTeams = new List<Team>();
-            List<Referee> listOfReferees = new List<Referee>();
 
             listOfTeams.Add(new Team("teamA", 23));
             listOfTeams.Add(new Team("teamB", 23));
@@ -30,10 +32,25 @@ namespace Backend
             listOfTeams.Add(new Team("teamJ", 23));
             listOfTeams.Add(new Team("teamK", 23));
             listOfTeams.Add(new Team("teamL", 23));
+            listOfTeams.Add(new Team("teamM", 23));
+            listOfTeams.Add(new Team("teamN", 23));
+            listOfTeams.Add(new Team("teamO", 23));
+            listOfTeams.Add(new Team("teamP", 23));
 
-            listOfTeams.ElementAt(0).AddPlayer("PlayerName", "PlayerSurnameA");
-            listOfTeams.ElementAt(0).AddPlayer("PlayerName", "PlayerSurnameB");
-            listOfTeams.ElementAt(0).AddPlayer("PlayerName", "PlayerSurnameC");
+            listOfPlayers.Add(new Player("PlayerName", "PlayerSurnameA"));
+            listOfPlayers.Add(new Player("PlayerName", "PlayerSurnameB"));
+            listOfPlayers.Add(new Player("PlayerName", "PlayerSurnameC"));
+            try
+            {
+                listOfPlayers.Add(new Player("PlayerName", "PlayerSurnameD", listOfTeams.ElementAt(0)));
+                listOfPlayers.Add(new Player("PlayerName", "PlayerSurnameE", listOfTeams.Find(x => x.name == "teamE")));
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+            }
+
+            listOfTeams.ElementAt(1).AddPlayer(listOfPlayers.ElementAt(1));
 
             listOfReferees.Add(new Referee("Referee", "Noname0"));
             listOfReferees.Add(new Referee("Referee", "Noname1"));
@@ -41,26 +58,21 @@ namespace Backend
             listOfReferees.Add(new Referee("Referee", "Noname3"));
             listOfReferees.Add(new Referee("Referee", "Noname4"));
 
-            FootballMatch footballMatch = new FootballMatch(new Referee("refereeNAME", "refSURNAME"),
-                                                            new Team("druzynaA", 23), (listOfTeams.ElementAt(0)),
-                                                            new Referee("Sedzia", "Boczny1"), new Referee("Sedzia", "Boczny2"));
+            Cup cup = new Cup(listOfTeams, listOfReferees, "New Cup");
+            listOfCups.Add(cup);
+            foreach (Team team in listOfTeams)
+                listOfCups.ElementAt(0).AddTeam(team);
+            foreach (Referee referee in listOfReferees)
+                listOfCups.ElementAt(0).AddReferee(referee);
 
-            MatchEngine matchEngine = new MatchEngine();
-            //var watch = Stopwatch.StartNew();
-            matchEngine.SymulateFootballMatch(ref footballMatch);
-            //watch.Stop();
-            //Debug.WriteLine($"It tooks: {watch.ElapsedMilliseconds/1000}s.");
-            Debug.WriteLine($"{footballMatch.ReturnTeamA().name} {footballMatch.GetScoreOfTeamA()} : {footballMatch.GetScoreOfTeamB()} {footballMatch.ReturnTeamB().name}. ");
-            Cup cup = new Cup(listOfTeams, listOfReferees);
-            var winner = cup.StartFootballCup();
             try
             {
+                DrawMenu(ref listOfPlayers, ref listOfTeams, ref listOfReferees, ref listOfCups);
             }
             catch (Exception e)
             {
                 Debug.Write(e.Message);
             }
-            DrawMenu(ref listOfTeams, ref listOfReferees);
 
             #region Console Display Old
             //List<Rozgrywki> listaTurniejowa = new List<Rozgrywki>();
