@@ -138,7 +138,7 @@ namespace Backend
         }
         public static void DodajZawodnikaDoDruzyny(List<Team> listaDruzyn, int pozycja)
         {
-            listaDruzyn.ElementAt(pozycja).AddPlayer("Kapitan", "Hak");
+            listaDruzyn.ElementAt(pozycja).AddPlayer(new Player("Kapitan", "Hak"));
         }
         public static void DodajSedziego(List<Referee> listaSedziow, string imie, string nazwisko)
         {
@@ -649,8 +649,8 @@ namespace Backend
                                 nrDruzyny = WybierzZListyDruzyneIWykonajNaNiejOperacje(listaDruzyn, "ZwrocNr");
                                 Console.Clear();
                                 Console.WriteLine("Zawodnicy w druzynie \"" + listaDruzyn.ElementAt(nrDruzyny).name + "\": ");
-                                if (listaDruzyn.ElementAt(nrDruzyny).ReturnPlayers().Any() == true)
-                                    foreach (Player zawodnik in listaDruzyn.ElementAt(nrDruzyny).ReturnPlayers())
+                                if (listaDruzyn.ElementAt(nrDruzyny).GetPlayers().Any() == true)
+                                    foreach (Player zawodnik in listaDruzyn.ElementAt(nrDruzyny).GetPlayers())
                                         Console.WriteLine($"{zawodnik.GetName} {zawodnik.GetSurname} rozegrane spotkania: {zawodnik.matchesPlayed}");
                                 else
                                     Console.WriteLine("Pusto, nie ma aktualnie zadnych zawodnikow");
