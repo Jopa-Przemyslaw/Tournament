@@ -10,19 +10,19 @@
         <ImageBrush ImageSource="media/tournament_splash_screen.png"/>
     </Window.Background>
     <Grid MouseLeftButtonDown="Move">
-        <Button x:Name="btnClose" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="268,292,0,0" VerticalAlignment="Top" Width="35" Height="35" Click="BtnClose_Click">
+        <Button x:Name="btnClose" Style="{StaticResource RoundButtonStyle}" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="333,26,0,0" VerticalAlignment="Top" Width="30" Height="30" Click="BtnClose_Click" MouseEnter="BtnClose_MouseEnter" MouseLeave="BtnClose_MouseLeave">
             <Button.Background>
                 <ImageBrush ImageSource="media/icons8-delete-80.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="btnMinimize" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="228,292,0,0" VerticalAlignment="Top" Width="35" Height="35" Click="BtnMinimize_Click">
+        <Button x:Name="btnMinimize" Style="{StaticResource RoundButtonStyle}" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="300,26,0,0" VerticalAlignment="Top" Width="30" Height="30" Click="BtnMinimize_Click" MouseEnter="BtnMinimize_MouseEnter" MouseLeave="BtnMinimize_MouseLeave">
             <Button.Background>
                 <ImageBrush ImageSource="media/icons8-down-button-bw-80.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="btnStartApp" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="222,120,0,0" VerticalAlignment="Top" Width="90" Height="90" Click="BtnStartApp_Click">
+        <Button x:Name="btnStartApp" Style="{StaticResource PlayButtonStyle}" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="242,190,0,0" VerticalAlignment="Top" Width="52" Height="52" Click="BtnStartApp_Click" MouseEnter="BtnStartApp_MouseEnter" MouseLeave="BtnStartApp_MouseLeave">
             <Button.Background>
-                <ImageBrush ImageSource="media/icons8-next-bw-80.png"/>
+                <ImageBrush ImageSource="media/icons8-next-bw-80.png" Stretch="None"/>
             </Button.Background>
         </Button>
 
