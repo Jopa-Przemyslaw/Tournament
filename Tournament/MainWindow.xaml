@@ -5,8 +5,62 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tournament"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Tournament" Height="600" Width="1000" MinHeight="600" MinWidth="1000" Icon="media/icons8-trophy-80.png">
+    <Window.Background>
+        <ImageBrush ImageSource="media/pitch-background.jpg" Opacity=".3"/>
+    </Window.Background>
+
+    <Grid x:Name="GridWindow">
+
+        <DockPanel LastChildFill="False">
+            <Menu x:Name="MenuBar" DockPanel.Dock="Right" Width="100" Height="Auto" Margin="5,5,5,5" VerticalAlignment="Center" BorderBrush="DarkSeaGreen" BorderThickness="1,1,1,1">
+                <Menu.Background>
+                    <SolidColorBrush Color="AntiqueWhite" Opacity=".7"/>
+                </Menu.Background>
+                <MenuItem x:Name="TeamMenuItem" Style="{StaticResource MenuItemStyle}" Width="70" Height="70" Margin="15,15,15,15" MaxWidth="100" MaxHeight="100" HorizontalAlignment="Center" VerticalAlignment="Center" MouseEnter="TeamMenuItem_MouseEnter" MouseLeave="TeamMenuItem_MouseLeave" Click="TeamMenuItem_Click" ToolTip="TEAM">
+                    <MenuItem.Background>
+                        <ImageBrush ImageSource="media/icons8-team-bw-64.png"/>
+                    </MenuItem.Background>
+                </MenuItem>
+                <MenuItem x:Name="PlayerMenuItem" Style="{StaticResource MenuItemStyle}" Width="70" Height="70" Margin="15,15,15,15" MaxWidth="100" MaxHeight="100" HorizontalAlignment="Center" VerticalAlignment="Center" MouseEnter="PlayerMenuItem_MouseEnter" MouseLeave="PlayerMenuItem_MouseLeave" Click="PlayerMenuItem_Click" ToolTip="PLAYER">
+                    <MenuItem.Background>
+                        <ImageBrush ImageSource="media/icons8-soccer-bw-64.png"/>
+                    </MenuItem.Background>
+                </MenuItem>
+                <MenuItem x:Name="RefereeMenuItem" Style="{StaticResource MenuItemStyle}" Width="70" Height="70" Margin="15,15,15,15" MaxWidth="100" MaxHeight="100" HorizontalAlignment="Center" VerticalAlignment="Center" MouseEnter="RefereeMenuItem_MouseEnter" MouseLeave="RefereeMenuItem_MouseLeave" Click="RefereeMenuItem_Click" ToolTip="REFEREE">
+                    <MenuItem.Background>
+                        <ImageBrush ImageSource="media/icons8-referee-80.png"/>
+                    </MenuItem.Background>
+                </MenuItem>
+                <MenuItem x:Name="CupMenuItem" Style="{StaticResource MenuItemStyle}" Width="70" Height="70" Margin="15,15,15,15" MaxWidth="100" MaxHeight="100" HorizontalAlignment="Center" VerticalAlignment="Center" MouseEnter="CupMenuItem_MouseEnter" MouseLeave="CupMenuItem_MouseLeave" Click="CupMenuItem_Click" ToolTip="CUP">
+                    <MenuItem.Background>
+                        <ImageBrush ImageSource="media/icons8-trophy-bw-80.png"/>
+                    </MenuItem.Background>
+                </MenuItem>
+                <MenuItem x:Name="TournamentMenuItem" Style="{StaticResource MenuItemStyle}" Width="70" Height="70" Margin="15,15,15,15" MaxWidth="100" MaxHeight="100" HorizontalAlignment="Center" VerticalAlignment="Center" MouseEnter="TournamentMenuItem_MouseEnter" MouseLeave="TournamentMenuItem_MouseLeave" Click="TournamentMenuItem_Click" ToolTip="TOURNAMENT">
+                    <MenuItem.Background>
+                        <ImageBrush ImageSource="media/icons8-leaderboard-bw-64.png"/>
+                    </MenuItem.Background>
+                </MenuItem>
+            </Menu>
+
+            <Grid x:Name="ContentContainer" HorizontalAlignment="Left" Margin="5,5,5,5" Width="{Binding ElementName=GridWindow, Path=ActualWidth}" Height="{Binding ElementName=GridWindow, Path=ActualHeight}">
+                <Grid.Background>
+                    <SolidColorBrush Color="Wheat" Opacity="0.3"/>
+                </Grid.Background>
+
+                <Border Background="Black" CornerRadius="20" Margin="50,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="Auto" Width="Auto">
+                    <Label x:Name="ContentTitle" Content="container's title" Foreground="White" FontFamily="Roboto Medium" FontSize="38" Margin="20,5,20,5"/>
+                </Border>
+
+                <Border Background="Pink" Margin="5,90,120,10">
+                    
+                    
+                </Border>
+
+            </Grid>
+        </DockPanel>
+
+
     </Grid>
 </Window>
