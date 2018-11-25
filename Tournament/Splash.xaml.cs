@@ -27,13 +27,9 @@ namespace Tournament
             InitializeComponent();
         }
 
-        private void Move(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
-        }
-
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
+            mainWindow.Close();
             this.Close();
         }
 
@@ -50,25 +46,25 @@ namespace Tournament
 
         private void BtnClose_MouseEnter(object sender, MouseEventArgs e)
         {
-            Uri resourceUri = new Uri(@"/media/icons8-delete-64.png", UriKind.Relative);
+            Uri resourceUri = new Uri(@"/media/icons8-close-window-128.png", UriKind.Relative);
             btnClose.Background = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(resourceUri).Stream));
         }
 
         private void BtnClose_MouseLeave(object sender, MouseEventArgs e)
         {
-            Uri resourceUri = new Uri(@"/media/icons8-delete-80.png", UriKind.Relative);
+            Uri resourceUri = new Uri(@"/media/icons8-close-window-bw-128.png", UriKind.Relative);
             btnClose.Background = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(resourceUri).Stream));
         }
 
         private void BtnMinimize_MouseEnter(object sender, MouseEventArgs e)
         {
-            Uri resourceUri = new Uri(@"/media/icons8-down-button-80.png", UriKind.Relative);
+            Uri resourceUri = new Uri(@"/media/icons8-minimize-window-128.png", UriKind.Relative);
             btnMinimize.Background = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(resourceUri).Stream));
         }
 
         private void BtnMinimize_MouseLeave(object sender, MouseEventArgs e)
         {
-            Uri resourceUri = new Uri(@"/media/icons8-down-button-bw-80.png", UriKind.Relative);
+            Uri resourceUri = new Uri(@"/media/icons8-minimize-window-bw-128.png", UriKind.Relative);
             btnMinimize.Background = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(resourceUri).Stream));
         }
 
@@ -90,6 +86,23 @@ namespace Tournament
                 Stretch = Stretch.None
             };
             btnStartApp.Background = imageBrush;
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+            mainWindow.Show();
+        }
+
+        private void Window_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            mainWindow.Close();
+            this.Close();
+        }
+
+        private void Window_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
         }
     }
 }
