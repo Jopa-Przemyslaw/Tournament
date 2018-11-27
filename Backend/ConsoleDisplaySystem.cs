@@ -16,7 +16,7 @@ namespace Backend
         private static readonly string[] optionsMenu = new string[] { "Create team", "Delete team", "Teams preview",
                 "\nCreate player", "Create player with team", "Add player to a team", "Remove player from team", "Remove player", "Players preview",
                 "\nAdd referee", "Remove referee", "Referee preview",
-                "\nCreate new cup", "Sign up team for a cup", "Sign up referee for a cup", "Check out teams of a cup", "Cup teams preview", "Cup referees preview", "Cup's referees preview",
+                "\nCreate new cup", "Sign up team for a cup", "Sign up referee for a cup", "Check out teams of a cup", "Cup teams preview", "Cup referees preview", 
                 "\nStart a football cup", "Show cups scoreboard",
                 "\nComing soon...", "Coming soon...", "Exit" };
         /// <summary>
