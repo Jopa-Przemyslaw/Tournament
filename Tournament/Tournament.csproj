@@ -55,6 +55,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AnimationsController.cs" />
+    <Compile Include="MenuController.cs" />
+    <Compile Include="MenuIconsController.cs" />
+    <Compile Include="Splash.xaml.cs">
+      <DependentUpon>Splash.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -67,6 +77,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Splash.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -93,6 +107,107 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\icons8-delete-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\icons8-delete-80.png" />
+    <Resource Include="media\icons8-down-button-80.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\icons8-trophy-80.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\tournament_splash_screen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\icons8-trophy-bw-80.png" />
+    <Resource Include="media\icons8-trophy-color-80.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\icons8-down-button-bw-80.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\icons8-next-80.png" />
+    <Resource Include="media\icons8-next-bw-80.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\icons8-team-64.png" />
+    <Resource Include="media\icons8-team-bw-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\icons8-soccer-64.png" />
+    <Resource Include="media\icons8-soccer-bw-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\icons8-referee-80.png" />
+    <Resource Include="media\icons8-referee-filled-80.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\icons8-leaderboard-64.png" />
+    <Resource Include="media\icons8-leaderboard-bw-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\pitch-background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\icons8-column-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\icons8-black-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\icons8-to-team-bw-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\icons8-to-team-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\icons8-plus-bw-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\icons8-plus-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\icons8-column-bw-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\icons8-out-of-team-bw-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\icons8-out-of-team-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\icons8-minimize-window-128.png" />
+    <Resource Include="media\icons8-minimize-window-bw-128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\icons8-close-window-128.png" />
+    <Resource Include="media\icons8-close-window-bw-128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\trophy_splash_screen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\icons8-preview-pane-100.png" />
+    <Resource Include="media\icons8-preview-pane-bw-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\icons8-in-referee-80.png" />
+    <Resource Include="media\icons8-in-referee-bw-80.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
