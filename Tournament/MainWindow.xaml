@@ -5,62 +5,419 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tournament"
         mc:Ignorable="d"
-        Title="Tournament" Height="600" Width="1000" MinHeight="600" MinWidth="1000" Icon="media/icons8-trophy-80.png">
+        Title="Tournament" Height="600" Width="1000" MinHeight="600" MinWidth="1000" MaxHeight="600" MaxWidth="1000" Icon="media/icons8-trophy-80.png" Loaded="Window_Loaded">
     <Window.Background>
         <ImageBrush ImageSource="media/pitch-background.jpg" Opacity=".3"/>
     </Window.Background>
 
+    <!--The whole window-->
     <Grid x:Name="GridWindow">
 
+        <!--Dock panel to arrange window zones-->
         <DockPanel LastChildFill="False">
-            <Menu x:Name="MenuBar" DockPanel.Dock="Right" Width="100" Height="Auto" Margin="5,5,5,5" VerticalAlignment="Center" BorderBrush="DarkSeaGreen" BorderThickness="1,1,1,1">
-                <Menu.Background>
-                    <SolidColorBrush Color="AntiqueWhite" Opacity=".7"/>
-                </Menu.Background>
-                <MenuItem x:Name="TeamMenuItem" Style="{StaticResource MenuItemStyle}" Width="70" Height="70" Margin="15,15,15,15" MaxWidth="100" MaxHeight="100" HorizontalAlignment="Center" VerticalAlignment="Center" MouseEnter="TeamMenuItem_MouseEnter" MouseLeave="TeamMenuItem_MouseLeave" Click="TeamMenuItem_Click" ToolTip="TEAM">
-                    <MenuItem.Background>
-                        <ImageBrush ImageSource="media/icons8-team-bw-64.png"/>
-                    </MenuItem.Background>
-                </MenuItem>
-                <MenuItem x:Name="PlayerMenuItem" Style="{StaticResource MenuItemStyle}" Width="70" Height="70" Margin="15,15,15,15" MaxWidth="100" MaxHeight="100" HorizontalAlignment="Center" VerticalAlignment="Center" MouseEnter="PlayerMenuItem_MouseEnter" MouseLeave="PlayerMenuItem_MouseLeave" Click="PlayerMenuItem_Click" ToolTip="PLAYER">
-                    <MenuItem.Background>
-                        <ImageBrush ImageSource="media/icons8-soccer-bw-64.png"/>
-                    </MenuItem.Background>
-                </MenuItem>
-                <MenuItem x:Name="RefereeMenuItem" Style="{StaticResource MenuItemStyle}" Width="70" Height="70" Margin="15,15,15,15" MaxWidth="100" MaxHeight="100" HorizontalAlignment="Center" VerticalAlignment="Center" MouseEnter="RefereeMenuItem_MouseEnter" MouseLeave="RefereeMenuItem_MouseLeave" Click="RefereeMenuItem_Click" ToolTip="REFEREE">
-                    <MenuItem.Background>
-                        <ImageBrush ImageSource="media/icons8-referee-80.png"/>
-                    </MenuItem.Background>
-                </MenuItem>
-                <MenuItem x:Name="CupMenuItem" Style="{StaticResource MenuItemStyle}" Width="70" Height="70" Margin="15,15,15,15" MaxWidth="100" MaxHeight="100" HorizontalAlignment="Center" VerticalAlignment="Center" MouseEnter="CupMenuItem_MouseEnter" MouseLeave="CupMenuItem_MouseLeave" Click="CupMenuItem_Click" ToolTip="CUP">
-                    <MenuItem.Background>
-                        <ImageBrush ImageSource="media/icons8-trophy-bw-80.png"/>
-                    </MenuItem.Background>
-                </MenuItem>
-                <MenuItem x:Name="TournamentMenuItem" Style="{StaticResource MenuItemStyle}" Width="70" Height="70" Margin="15,15,15,15" MaxWidth="100" MaxHeight="100" HorizontalAlignment="Center" VerticalAlignment="Center" MouseEnter="TournamentMenuItem_MouseEnter" MouseLeave="TournamentMenuItem_MouseLeave" Click="TournamentMenuItem_Click" ToolTip="TOURNAMENT">
-                    <MenuItem.Background>
-                        <ImageBrush ImageSource="media/icons8-leaderboard-bw-64.png"/>
-                    </MenuItem.Background>
-                </MenuItem>
-            </Menu>
+            <!--Right vertical menu-->
+            <Border DockPanel.Dock="Right" Width="100" Height="Auto" Margin="5,5,5,5" VerticalAlignment="Center" BorderBrush="Black" BorderThickness="0,5,5,5" CornerRadius="20">
+                <Border.Background>
+                    <SolidColorBrush Color="#FFAFC5AC" Opacity="0.7"/>
+                </Border.Background>
+                <Menu x:Name="MenuBar" DockPanel.Dock="Right">
+                    <Menu.Background>
+                        <SolidColorBrush Color="AntiqueWhite" Opacity=".0"/>
+                    </Menu.Background>
+                    <MenuItem x:Name="PlayerMenuItem" Style="{StaticResource MenuItemStyle}" Width="70" Height="70" Margin="10,15,10,15" MaxWidth="100" MaxHeight="100" HorizontalAlignment="Center" VerticalAlignment="Center" MouseEnter="PlayerMenuItem_MouseEnter" MouseLeave="PlayerMenuItem_MouseLeave" Click="PlayerMenuItem_Click" ToolTip="PLAYER">
+                        <MenuItem.Background>
+                            <ImageBrush ImageSource="media/icons8-soccer-bw-64.png"/>
+                        </MenuItem.Background>
+                    </MenuItem>
+                    <MenuItem x:Name="TeamMenuItem" Style="{StaticResource MenuItemStyle}" Width="70" Height="70" Margin="10,15,10,15" MaxWidth="100" MaxHeight="100" HorizontalAlignment="Center" VerticalAlignment="Center" MouseEnter="TeamMenuItem_MouseEnter" MouseLeave="TeamMenuItem_MouseLeave" Click="TeamMenuItem_Click" ToolTip="TEAM">
+                        <MenuItem.Background>
+                            <ImageBrush ImageSource="media/icons8-team-bw-64.png"/>
+                        </MenuItem.Background>
+                    </MenuItem>
+                    <MenuItem x:Name="RefereeMenuItem" Style="{StaticResource MenuItemStyle}" Width="70" Height="70" Margin="10,15,10,15" MaxWidth="100" MaxHeight="100" HorizontalAlignment="Center" VerticalAlignment="Center" MouseEnter="RefereeMenuItem_MouseEnter" MouseLeave="RefereeMenuItem_MouseLeave" Click="RefereeMenuItem_Click" ToolTip="REFEREE">
+                        <MenuItem.Background>
+                            <ImageBrush ImageSource="media/icons8-referee-80.png"/>
+                        </MenuItem.Background>
+                    </MenuItem>
+                    <MenuItem x:Name="CupMenuItem" Style="{StaticResource MenuItemStyle}" Width="70" Height="70" Margin="10,15,10,15" MaxWidth="100" MaxHeight="100" HorizontalAlignment="Center" VerticalAlignment="Center" MouseEnter="CupMenuItem_MouseEnter" MouseLeave="CupMenuItem_MouseLeave" Click="CupMenuItem_Click" ToolTip="CUP">
+                        <MenuItem.Background>
+                            <ImageBrush ImageSource="media/icons8-trophy-bw-80.png"/>
+                        </MenuItem.Background>
+                    </MenuItem>
+                    <MenuItem x:Name="TournamentMenuItem" Style="{StaticResource MenuItemStyle}" Width="70" Height="70" Margin="10,15,10,15" MaxWidth="100" MaxHeight="100" HorizontalAlignment="Center" VerticalAlignment="Center" MouseEnter="TournamentMenuItem_MouseEnter" MouseLeave="TournamentMenuItem_MouseLeave" Click="TournamentMenuItem_Click" ToolTip="TOURNAMENT">
+                        <MenuItem.Background>
+                            <ImageBrush ImageSource="media/icons8-leaderboard-bw-64.png"/>
+                        </MenuItem.Background>
+                    </MenuItem>
+                </Menu>
+            </Border>
 
-            <Grid x:Name="ContentContainer" HorizontalAlignment="Left" Margin="5,5,5,5" Width="{Binding ElementName=GridWindow, Path=ActualWidth}" Height="{Binding ElementName=GridWindow, Path=ActualHeight}">
+            <!--Content field-->
+            <Grid x:Name="ContainerField" HorizontalAlignment="Left" Margin="5,5,5,5" Width="{Binding ElementName=GridWindow, Path=ActualWidth}" Height="{Binding ElementName=GridWindow, Path=ActualHeight}">
                 <Grid.Background>
-                    <SolidColorBrush Color="Wheat" Opacity="0.3"/>
+                    <SolidColorBrush Color="Wheat" Opacity=".2"/>
                 </Grid.Background>
 
-                <Border Background="Black" CornerRadius="20" Margin="50,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="Auto" Width="Auto">
-                    <Label x:Name="ContentTitle" Content="container's title" Foreground="White" FontFamily="Roboto Medium" FontSize="38" Margin="20,5,20,5"/>
+                <!--Container with content Title-->
+                <Border x:Name="ContainerTitle" BorderBrush="Black" BorderThickness="7" CornerRadius="20" Margin="10,3,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="Auto" Width="Auto">
+                    <Border.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.7"/>
+                    </Border.Background>
+                    <Label x:Name="ContentTitle" Content="TOURNAMENT MAIN" Foreground="White" FontFamily="Roboto Black" FontSize="40" Margin="50,0,50,0"/>
                 </Border>
 
-                <Border Background="Pink" Margin="5,90,120,10">
-                    
-                    
+                <!--Container with PLAYER content-->
+                <Border x:Name="ContainerContent_Player" Tag="PLAYER" Margin="5,80,120,15" Visibility="Visible">
+                    <Border.Background>
+                        <SolidColorBrush Color="Pink" Opacity=".2"/>
+                    </Border.Background>
+                    <!--Whole content-->
+                    <Grid>
+                        <!--Content menu-->
+                        <Border Name="ContainerNavigationBar_Player" VerticalAlignment="Top" HorizontalAlignment="Right" Height="Auto" BorderBrush="Black" BorderThickness="4,4,0,0" CornerRadius="10">
+                            <Border.Background>
+                                <SolidColorBrush Color="Snow" Opacity=".5"/>
+                            </Border.Background>
+                            <Menu x:Name="NavigationBar_Player" Height="Auto" Width="Auto">
+                                <Menu.Background>
+                                    <SolidColorBrush Color="Red" Opacity=".1"/>
+                                </Menu.Background>
+                                <MenuItem x:Name="NavBarItem_Player" Style="{StaticResource MenuItemStyle}" Margin="7,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Create new player" MouseEnter="NavBarItem_Player_MouseEnter" MouseLeave="NavBarItem_Player_MouseLeave">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-plus-bw-512.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem Style="{StaticResource MenuItemStyle}" HorizontalAlignment="Stretch" Width="5" VerticalAlignment="Stretch" Tag="mySeparator">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-column-100.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+
+                                <MenuItem Visibility="Collapsed" x:Name="NavBarItem1_Player" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Create new player with team">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-to-team-bw-64.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem Visibility="Collapsed" Style="{StaticResource MenuItemStyle}" HorizontalAlignment="Stretch" Width="5" VerticalAlignment="Stretch" Tag="mySeparator">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-column-100.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+
+                                <MenuItem x:Name="NavBarItem2_Player" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Assign to team" MouseEnter="NavBarItem2_Player_MouseEnter" MouseLeave="NavBarItem2_Player_MouseLeave">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-to-team-bw-64.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem Style="{StaticResource MenuItemStyle}" HorizontalAlignment="Stretch" Width="5" VerticalAlignment="Stretch" Tag="mySeparator">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-column-100.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+
+                                <MenuItem x:Name="NavBarItem3_Player" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Leave team" MouseEnter="NavBarItem3_Player_MouseEnter" MouseLeave="NavBarItem3_Player_MouseLeave">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-out-of-team-bw-64.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem Style="{StaticResource MenuItemStyle}" HorizontalAlignment="Stretch" Width="5" VerticalAlignment="Stretch" Tag="mySeparator">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-column-100.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+
+                                <MenuItem x:Name="NavBarItem4_Player" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Remove player" MouseEnter="NavBarItem4_Player_MouseEnter" MouseLeave="NavBarItem4_Player_MouseLeave">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-delete-80.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem Style="{StaticResource MenuItemStyle}" HorizontalAlignment="Stretch" Width="5" VerticalAlignment="Stretch" Tag="mySeparator">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-column-100.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+
+                                <MenuItem x:Name="NavBarItem5_Player" Style="{StaticResource MenuButtonStyle}" Margin="5,0,7,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Player's preview" MouseEnter="NavBarItem5_Player_MouseEnter" MouseLeave="NavBarItem5_Player_MouseLeave">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-preview-pane-bw-100.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                            </Menu>
+                        </Border>
+                        <!--Content body-->
+                        <Border Margin="0,75,0,0" HorizontalAlignment="Stretch" Height="Auto" BorderBrush="Black" BorderThickness="5,0,0,5" CornerRadius="10">
+                            <Border.Background>
+                                <SolidColorBrush Color="Black" Opacity=".5"/>
+                            </Border.Background>
+                            <Border x:Name="ContainerPlayerContent" >
+                                <Border.Background>
+                                    <SolidColorBrush Color="Red" Opacity="0.1"/>
+                                </Border.Background>
+
+                                <Border x:Name="PlayerAdd">
+                                    <Grid>
+                                        <Label Content="PLAYER NAME" FontSize="20" Margin="200,121,505,233" FontFamily="Roboto" Foreground="White"/>
+                                        <TextBox x:Name="PlayerName" FontSize="20" Margin="357,126,205,233" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
+                                        <Label Content="PLAYER SURNAME" FontSize="20" Margin="164,166,505,188" FontFamily="Roboto" Foreground="White"/>
+                                        <TextBox x:Name="PlayerSurame" FontSize="20" Margin="357,167,205,192" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
+                                    </Grid>
+                                </Border>
+
+
+                            </Border>
+                        </Border>
+                    </Grid>
+                </Border>
+                <!--End of container with PLAYER content-->
+
+                <!--Container with TEAM content-->
+                <Border x:Name="ContainerContent_Team" Tag="TEAM" Margin="5,80,120,15" Visibility="Collapsed">
+                    <Border.Background>
+                        <SolidColorBrush Color="Pink" Opacity=".1"/>
+                    </Border.Background>
+                    <!--Whole content-->
+                    <Grid>
+                        <!--Content menu-->
+                        <Border Name="ContainerNavigationBar_Team" CornerRadius="10" VerticalAlignment="Top" HorizontalAlignment="Right" Height="Auto" BorderBrush="Black" BorderThickness="4">
+                            <Border.Background>
+                                <SolidColorBrush Color="White" Opacity=".5"/>
+                            </Border.Background>
+                            <Menu x:Name="NavigationBar_Team" Height="Auto" Width="Auto">
+                                <Menu.Background>
+                                    <SolidColorBrush Color="Red" Opacity=".1"/>
+                                </Menu.Background>
+                                <MenuItem x:Name="NavBarItem_Team" Style="{StaticResource MenuItemStyle}" Margin="7,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Create new team" MouseEnter="NavBarItem_Team_MouseEnter" MouseLeave="NavBarItem_Team_MouseLeave">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-plus-bw-512.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem Style="{StaticResource MenuItemStyle}" HorizontalAlignment="Stretch" Width="5" VerticalAlignment="Stretch" Tag="mySeparator">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-column-100.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+
+                                <MenuItem x:Name="NavBarItem1_Team" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Assign player to team" MouseEnter="NavBarItem1_Team_MouseEnter" MouseLeave="NavBarItem1_Team_MouseLeave">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-to-team-bw-64.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem Style="{StaticResource MenuItemStyle}" HorizontalAlignment="Stretch" Width="5" VerticalAlignment="Stretch" Tag="mySeparator">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-column-100.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+
+                                <MenuItem x:Name="NavBarItem2_Team" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Kick from team" MouseEnter="NavBarItem2_Team_MouseEnter" MouseLeave="NavBarItem2_Team_MouseLeave">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-out-of-team-bw-64.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem Style="{StaticResource MenuItemStyle}" HorizontalAlignment="Stretch" Width="5" VerticalAlignment="Stretch" Tag="mySeparator">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-column-100.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+
+                                <MenuItem x:Name="NavBarItem3_Team" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Remove team" MouseEnter="NavBarItem3_Team_MouseEnter" MouseLeave="NavBarItem3_Team_MouseLeave">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-delete-80.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem Style="{StaticResource MenuItemStyle}" HorizontalAlignment="Stretch" Width="5" VerticalAlignment="Stretch" Tag="mySeparator">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-column-100.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+
+                                <MenuItem x:Name="NavBarItem4_Team" Style="{StaticResource MenuButtonStyle}" Margin="5,0,7,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Preview team" MouseEnter="NavBarItem4_Team_MouseEnter" MouseLeave="NavBarItem4_Team_MouseLeave">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-preview-pane-bw-100.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                            </Menu>
+                        </Border>
+                        <!--Content body-->
+                        <Border x:Name="ContainerTeamContent" Margin="0,75,0,0" HorizontalAlignment="Stretch" Height="Auto" CornerRadius="10">
+                            <Border.Background>
+                                <SolidColorBrush Color="Blue" Opacity=".1"/>
+                            </Border.Background>
+
+                            <Border x:Name="TeamAdd">
+                                <Grid>
+                                    <Label Content="TEAM NAME" FontSize="20" Margin="200,121,505,233" FontFamily="Roboto" Foreground="White"/>
+                                    <TextBox x:Name="TeamName" FontSize="20" Margin="357,126,205,233" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
+                                </Grid>
+                            </Border>
+
+                        </Border>
+                    </Grid>
+                </Border>
+                <!--End of container with TEAM content-->
+
+                <!--Container with RERFEREE content-->
+                <Border x:Name="ContainerContent_Referee" Tag="REFEREE" Margin="5,80,120,15" Visibility="Collapsed">
+                    <Border.Background>
+                        <SolidColorBrush Color="Pink" Opacity=".1"/>
+                    </Border.Background>
+                    <!--Whole content-->
+                    <Grid>
+                        <!--Content menu-->
+                        <Border Name="ContainerNavigationBar_Referee" CornerRadius="10" VerticalAlignment="Top" HorizontalAlignment="Right" Height="Auto" BorderBrush="Black" BorderThickness="4">
+                            <Border.Background>
+                                <SolidColorBrush Color="White" Opacity=".5"/>
+                            </Border.Background>
+                            <Menu x:Name="NavigationBar_Referee" Height="Auto" Width="Auto">
+                                <Menu.Background>
+                                    <SolidColorBrush Color="Red" Opacity=".1"/>
+                                </Menu.Background>
+                                <MenuItem x:Name="NavBarItem_Referee" Style="{StaticResource MenuItemStyle}" Margin="7,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Create new team" MouseEnter="NavBarItem_Referee_MouseEnter" MouseLeave="NavBarItem_Referee_MouseLeave">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-plus-bw-512.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem Style="{StaticResource MenuItemStyle}" HorizontalAlignment="Stretch" Width="5" VerticalAlignment="Stretch" Tag="mySeparator">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-column-100.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+
+                                <MenuItem x:Name="NavBarItem1_Referee" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Remove team" MouseEnter="NavBarItem1_Referee_MouseEnter" MouseLeave="NavBarItem1_Referee_MouseLeave">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-delete-80.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem Style="{StaticResource MenuItemStyle}" HorizontalAlignment="Stretch" Width="5" VerticalAlignment="Stretch" Tag="mySeparator">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-column-100.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+
+                                <MenuItem x:Name="NavBarItem2_Referee" Style="{StaticResource MenuButtonStyle}" Margin="5,0,7,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Preview team" MouseEnter="NavBarItem2_Referee_MouseEnter" MouseLeave="NavBarItem2_Referee_MouseLeave">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-preview-pane-bw-100.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                            </Menu>
+                        </Border>
+                        <!--Content body-->
+                        <Border x:Name="ContainerRefereeContent" Margin="0,75,0,0" HorizontalAlignment="Stretch" Height="Auto" CornerRadius="10">
+                            <Border.Background>
+                                <SolidColorBrush Color="Blue" Opacity=".1"/>
+                            </Border.Background>
+
+                            <Border x:Name="RefereeAdd">
+                                <Grid>
+                                    <Label Content="REFEREE NAME" FontSize="20" Margin="200,121,505,233" FontFamily="Roboto" Foreground="White"/>
+                                    <TextBox x:Name="RefereeName" FontSize="20" Margin="357,126,205,233" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
+                                    <Label Content="REFEREE SURNAME" FontSize="20" Margin="164,166,505,188" FontFamily="Roboto" Foreground="White"/>
+                                    <TextBox x:Name="RefereeSurame" FontSize="20" Margin="357,167,205,192" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
+                                </Grid>
+                            </Border>
+
+                        </Border>
+                    </Grid>
+                </Border>
+                <!--End of container with REFEREE content-->
+
+                <!--Container with CUP content-->
+                <Border x:Name="ContainerContent_Cup" Tag="CUP" Margin="5,80,120,15" Visibility="Collapsed">
+                    <Border.Background>
+                        <SolidColorBrush Color="Pink" Opacity=".1"/>
+                    </Border.Background>
+                    <!--Whole content-->
+                    <Grid>
+                        <!--Content menu-->
+                        <Border Name="ContainerNavigationBar_Cup" CornerRadius="10" VerticalAlignment="Top" HorizontalAlignment="Right" Height="Auto" BorderBrush="Black" BorderThickness="4">
+                            <Border.Background>
+                                <SolidColorBrush Color="White" Opacity=".5"/>
+                            </Border.Background>
+                            <Menu x:Name="NavigationBar_Cup" Height="Auto" Width="Auto">
+                                <Menu.Background>
+                                    <SolidColorBrush Color="Red" Opacity=".1"/>
+                                </Menu.Background>
+                                <MenuItem x:Name="NavBarItem_Cup" Style="{StaticResource MenuItemStyle}" Margin="7,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Create new cup" MouseEnter="NavBarItem_Cup_MouseEnter" MouseLeave="NavBarItem_Cup_MouseLeave">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-plus-bw-512.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem Style="{StaticResource MenuItemStyle}" HorizontalAlignment="Stretch" Width="5" VerticalAlignment="Stretch" Tag="mySeparator">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-column-100.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+
+                                <MenuItem x:Name="NavBarItem1_Cup" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Sign up team for a cup" MouseEnter="NavBarItem1_Cup_MouseEnter" MouseLeave="NavBarItem1_Cup_MouseLeave">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-to-team-bw-64.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem Style="{StaticResource MenuItemStyle}" HorizontalAlignment="Stretch" Width="5" VerticalAlignment="Stretch" Tag="mySeparator">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-column-100.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+
+                                <MenuItem x:Name="NavBarItem2_Cup" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Sign up referee for a cup" MouseEnter="NavBarItem2_Cup_MouseEnter" MouseLeave="NavBarItem2_Cup_MouseLeave">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-in-referee-bw-80.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem Style="{StaticResource MenuItemStyle}" HorizontalAlignment="Stretch" Width="5" VerticalAlignment="Stretch" Tag="mySeparator">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-column-100.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+
+                                <MenuItem x:Name="NavBarItem3_Cup" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Check out teams of a cup" MouseEnter="NavBarItem3_Cup_MouseEnter" MouseLeave="NavBarItem3_Cup_MouseLeave">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-out-of-team-bw-64.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem Style="{StaticResource MenuItemStyle}" HorizontalAlignment="Stretch" Width="5" VerticalAlignment="Stretch" Tag="mySeparator">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-column-100.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+
+                                <MenuItem x:Name="NavBarItem4_Cup" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Teams in cup preview" MouseEnter="NavBarItem4_Cup_MouseEnter" MouseLeave="NavBarItem4_Cup_MouseLeave">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-preview-pane-bw-100.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem Style="{StaticResource MenuItemStyle}" HorizontalAlignment="Stretch" Width="5" VerticalAlignment="Stretch" Tag="mySeparator">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-column-100.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+
+                                <MenuItem x:Name="NavBarItem5_Cup" Style="{StaticResource MenuButtonStyle}" Margin="5,0,7,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Referees in cup preview" MouseEnter="NavBarItem5_Cup_MouseEnter" MouseLeave="NavBarItem5_Cup_MouseLeave">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-preview-pane-bw-100.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem Style="{StaticResource MenuItemStyle}" HorizontalAlignment="Stretch" Width="5" VerticalAlignment="Stretch" Tag="mySeparator">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-column-100.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                            </Menu>
+                        </Border>
+                        <!--Content body-->
+                        <Border x:Name="ContainerCupContent" Margin="0,75,0,0" HorizontalAlignment="Stretch" Height="Auto" CornerRadius="10">
+                            <Border.Background>
+                                <SolidColorBrush Color="Blue" Opacity=".1"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
+                </Border>
+                <!--End of container with CUP content-->
+
+                <Border x:Name="ContainerContent_Tournament" Background="Pink" Margin="5,90,120,10" Visibility="Collapsed">
                 </Border>
 
             </Grid>
         </DockPanel>
-
 
     </Grid>
 </Window>
