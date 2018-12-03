@@ -45,8 +45,8 @@
   <ItemGroup>
     <Compile Include="AuxiliaryClasses\ThreeReferees.cs" />
     <Compile Include="AuxiliaryClasses\TwoTeams.cs" />
-    <Compile Include="ConsoleCommunication\ConsoleDisplayOld.cs" />
-    <Compile Include="ConsoleCommunication\ConsoleDisplaySystem.cs" />
+    <Compile Include="ConsoleDisplayOld.cs" />
+    <Compile Include="ConsoleDisplaySystem.cs" />
     <Compile Include="Cup.cs" />
     <Compile Include="FootballMatch.cs" />
     <Compile Include="Match.cs" />
@@ -57,11 +57,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Referee.cs" />
     <Compile Include="Team.cs" />
-    <Compile Include="TournamentCommunication\TournamentBackendSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

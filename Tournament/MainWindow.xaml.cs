@@ -14,7 +14,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using Backend;
 
 namespace Tournament
 {
@@ -23,13 +22,9 @@ namespace Tournament
     /// </summary>
     public partial class MainWindow : Window
     {
-        
         Border[] borders;
-        Border[] playerNavItems, teamNavItems, refereeNavItems, cupNavItems, tournamentNavItems;
-
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
         MenuController menuController;
-        NavbarController navbarController;
         AnimationsController animationsController;
 
         public MainWindow()
@@ -40,13 +35,8 @@ namespace Tournament
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             borders = new Border[5];
-            playerNavItems = new Border[5];
-            teamNavItems = new Border[5];
-            refereeNavItems = new Border[3];
-            cupNavItems = new Border[6];
-
             menuController = new MenuController(ref borders, this, this.ContentTitle, new PropertyPath(MarginProperty));
-            navbarController = new NavbarController();
+            
             animationsController = new AnimationsController(new PropertyPath(MarginProperty), this);
 
 
@@ -56,31 +46,6 @@ namespace Tournament
             borders[2] = ContainerContent_Referee;
             borders[3] = ContainerContent_Cup;
             borders[4] = ContainerContent_Tournament;
-
-            playerNavItems[0] = PlayerContent_Add;
-            playerNavItems[1] = PlayerContent_AssignTeam;
-            playerNavItems[2] = PlayerContent_LeaveTeam;
-            playerNavItems[3] = PlayerContent_Remove;
-            playerNavItems[4] = PlayerContent_Preview;
-
-            //teamNavItems[0] = NavBarItem_Team;
-            //teamNavItems[1] = NavBarItem1_Team;
-            //teamNavItems[2] = NavBarItem2_Team;
-            //teamNavItems[3] = NavBarItem3_Team;
-            //teamNavItems[4] = NavBarItem4_Team;
-
-            //refereeNavItems[0] = NavBarItem_Referee;
-            //refereeNavItems[1] = NavBarItem1_Referee;
-            //refereeNavItems[2] = NavBarItem2_Referee;
-
-            //cupNavItems[0] = NavBarItem_Cup;
-            //cupNavItems[1] = NavBarItem1_Cup;
-            //cupNavItems[2] = NavBarItem2_Cup;
-            //cupNavItems[3] = NavBarItem3_Cup;
-            //cupNavItems[4] = NavBarItem4_Cup;
-            //cupNavItems[5] = NavBarItem5_Cup;
-
-
 
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 1);
@@ -208,112 +173,62 @@ namespace Tournament
         #region PLAYER methods
         private void NavBarItem_Player_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (PlayerContent_Add.Visibility == Visibility.Collapsed)
-            {
-                navbarController.navbarIconsController.AddIconOn(ref NavBarItem_Player);
-            }
+            Uri resourceUri = new Uri(@"/media/icons8-plus-512.png", UriKind.Relative);
+            NavBarItem_Player.Background = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(resourceUri).Stream));
         }
 
         private void NavBarItem_Player_MouseLeave(object sender, MouseEventArgs e)
         {
-            if (PlayerContent_Add.Visibility == Visibility.Collapsed)
-            {
-                navbarController.navbarIconsController.AddIconOff(ref NavBarItem_Player);
-            }
+            Uri resourceUri = new Uri(@"/media/icons8-plus-bw-512.png", UriKind.Relative);
+            NavBarItem_Player.Background = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(resourceUri).Stream));
         }
 
         private void NavBarItem2_Player_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (PlayerContent_AssignTeam.Visibility == Visibility.Collapsed)
-            {
-                navbarController.navbarIconsController.AssignIconOn(ref NavBarItem2_Player);
-            }
+            Uri resourceUri = new Uri(@"/media/icons8-to-team-64.png", UriKind.Relative);
+            NavBarItem2_Player.Background = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(resourceUri).Stream));
         }
 
         private void NavBarItem2_Player_MouseLeave(object sender, MouseEventArgs e)
         {
-            if (PlayerContent_AssignTeam.Visibility == Visibility.Collapsed)
-            {
-                navbarController.navbarIconsController.AssignIconOff(ref NavBarItem2_Player);
-            }
+            Uri resourceUri = new Uri(@"/media/icons8-to-team-bw-64.png", UriKind.Relative);
+            NavBarItem2_Player.Background = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(resourceUri).Stream));
         }
 
         private void NavBarItem3_Player_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (PlayerContent_LeaveTeam.Visibility == Visibility.Collapsed)
-            {
-                navbarController.navbarIconsController.LeaveTeamIconOn(ref NavBarItem3_Player);
-            }
+            Uri resourceUri = new Uri(@"/media/icons8-out-of-team-64.png", UriKind.Relative);
+            NavBarItem3_Player.Background = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(resourceUri).Stream));
         }
 
         private void NavBarItem3_Player_MouseLeave(object sender, MouseEventArgs e)
         {
-            if (PlayerContent_LeaveTeam.Visibility == Visibility.Collapsed)
-            {
-                navbarController.navbarIconsController.LeaveTeamIconOff(ref NavBarItem3_Player);
-            }
+            Uri resourceUri = new Uri(@"/media/icons8-out-of-team-bw-64.png", UriKind.Relative);
+            NavBarItem3_Player.Background = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(resourceUri).Stream));
         }
 
         private void NavBarItem4_Player_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (PlayerContent_Remove.Visibility == Visibility.Collapsed)
-            {
-                navbarController.navbarIconsController.RemoveIconOn(ref NavBarItem4_Player);
-            }
+            Uri resourceUri = new Uri(@"/media/icons8-delete-64.png", UriKind.Relative);
+            NavBarItem4_Player.Background = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(resourceUri).Stream));
         }
 
         private void NavBarItem4_Player_MouseLeave(object sender, MouseEventArgs e)
         {
-            if (PlayerContent_Remove.Visibility == Visibility.Collapsed)
-            {
-                navbarController.navbarIconsController.RemoveIconOff(ref NavBarItem4_Player);
-            }
+            Uri resourceUri = new Uri(@"/media/icons8-delete-80.png", UriKind.Relative);
+            NavBarItem4_Player.Background = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(resourceUri).Stream));
         }
 
         private void NavBarItem5_Player_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (PlayerContent_Preview.Visibility == Visibility.Collapsed)
-            {
-                navbarController.navbarIconsController.PreviewIconOn(ref NavBarItem5_Player);
-            }
+            Uri resourceUri = new Uri(@"/media/icons8-preview-pane-100.png", UriKind.Relative);
+            NavBarItem5_Player.Background = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(resourceUri).Stream));
         }
 
         private void NavBarItem5_Player_MouseLeave(object sender, MouseEventArgs e)
         {
-            if (PlayerContent_Preview.Visibility == Visibility.Collapsed)
-            {
-                navbarController.navbarIconsController.PreviewIconOff(ref NavBarItem5_Player);
-            }
-        }
-
-        private void NavBarItem_Player_Click(object sender, RoutedEventArgs e)
-        {
-            navbarController.NavbarItemOnClick(sender, PlayerContent_Add, playerNavItems);
-        }
-
-        private void NavBarItem2_Player_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void NavBarItem3_Player_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void NavBarItem4_Player_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void NavBarItem5_Player_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void PlayerAddButton_Click(object sender, RoutedEventArgs e)
-        {
-
+            Uri resourceUri = new Uri(@"/media/icons8-preview-pane-bw-100.png", UriKind.Relative);
+            NavBarItem5_Player.Background = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(resourceUri).Stream));
         }
 
         #endregion
@@ -469,7 +384,6 @@ namespace Tournament
             NavBarItem3_Cup.Background = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(resourceUri).Stream));
         }
 
-
         private void NavBarItem4_Cup_MouseEnter(object sender, MouseEventArgs e)
         {
             Uri resourceUri = new Uri(@"/media/icons8-preview-pane-100.png", UriKind.Relative);
@@ -495,7 +409,5 @@ namespace Tournament
         }
 
         #endregion
-
-
     }
 }

@@ -82,7 +82,7 @@
                                 <Menu.Background>
                                     <SolidColorBrush Color="Red" Opacity=".1"/>
                                 </Menu.Background>
-                                <MenuItem x:Name="NavBarItem_Player" Style="{StaticResource MenuItemStyle}" Margin="7,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Create new player" MouseEnter="NavBarItem_Player_MouseEnter" MouseLeave="NavBarItem_Player_MouseLeave" Click="NavBarItem_Player_Click">
+                                <MenuItem x:Name="NavBarItem_Player" Style="{StaticResource MenuItemStyle}" Margin="7,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Create new player" MouseEnter="NavBarItem_Player_MouseEnter" MouseLeave="NavBarItem_Player_MouseLeave">
                                     <MenuItem.Background>
                                         <ImageBrush ImageSource="media/icons8-plus-bw-512.png"/>
                                     </MenuItem.Background>
@@ -104,7 +104,7 @@
                                     </MenuItem.Background>
                                 </MenuItem>
 
-                                <MenuItem x:Name="NavBarItem2_Player" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Assign to team" MouseEnter="NavBarItem2_Player_MouseEnter" MouseLeave="NavBarItem2_Player_MouseLeave" Click="NavBarItem2_Player_Click">
+                                <MenuItem x:Name="NavBarItem2_Player" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Assign to team" MouseEnter="NavBarItem2_Player_MouseEnter" MouseLeave="NavBarItem2_Player_MouseLeave">
                                     <MenuItem.Background>
                                         <ImageBrush ImageSource="media/icons8-to-team-bw-64.png"/>
                                     </MenuItem.Background>
@@ -115,7 +115,7 @@
                                     </MenuItem.Background>
                                 </MenuItem>
 
-                                <MenuItem x:Name="NavBarItem3_Player" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Leave team" MouseEnter="NavBarItem3_Player_MouseEnter" MouseLeave="NavBarItem3_Player_MouseLeave" Click="NavBarItem3_Player_Click">
+                                <MenuItem x:Name="NavBarItem3_Player" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Leave team" MouseEnter="NavBarItem3_Player_MouseEnter" MouseLeave="NavBarItem3_Player_MouseLeave">
                                     <MenuItem.Background>
                                         <ImageBrush ImageSource="media/icons8-out-of-team-bw-64.png"/>
                                     </MenuItem.Background>
@@ -126,7 +126,7 @@
                                     </MenuItem.Background>
                                 </MenuItem>
 
-                                <MenuItem x:Name="NavBarItem4_Player" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Remove player" MouseEnter="NavBarItem4_Player_MouseEnter" MouseLeave="NavBarItem4_Player_MouseLeave" Click="NavBarItem4_Player_Click">
+                                <MenuItem x:Name="NavBarItem4_Player" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Remove player" MouseEnter="NavBarItem4_Player_MouseEnter" MouseLeave="NavBarItem4_Player_MouseLeave">
                                     <MenuItem.Background>
                                         <ImageBrush ImageSource="media/icons8-delete-80.png"/>
                                     </MenuItem.Background>
@@ -137,7 +137,7 @@
                                     </MenuItem.Background>
                                 </MenuItem>
 
-                                <MenuItem x:Name="NavBarItem5_Player" Style="{StaticResource MenuButtonStyle}" Margin="5,0,7,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Player's preview" MouseEnter="NavBarItem5_Player_MouseEnter" MouseLeave="NavBarItem5_Player_MouseLeave" Click="NavBarItem5_Player_Click">
+                                <MenuItem x:Name="NavBarItem5_Player" Style="{StaticResource MenuButtonStyle}" Margin="5,0,7,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Player's preview" MouseEnter="NavBarItem5_Player_MouseEnter" MouseLeave="NavBarItem5_Player_MouseLeave">
                                     <MenuItem.Background>
                                         <ImageBrush ImageSource="media/icons8-preview-pane-bw-100.png"/>
                                     </MenuItem.Background>
@@ -149,62 +149,22 @@
                             <Border.Background>
                                 <SolidColorBrush Color="Black" Opacity=".5"/>
                             </Border.Background>
-                            <Grid x:Name="ContainerPlayerContent">
+                            <Border x:Name="ContainerPlayerContent" >
+                                <Border.Background>
+                                    <SolidColorBrush Color="Red" Opacity="0.1"/>
+                                </Border.Background>
 
-                                <!--Add player-->
-                                <Border x:Name="PlayerContent_Add" Visibility="Visible">
+                                <Border x:Name="PlayerAdd">
                                     <Grid>
                                         <Label Content="PLAYER NAME" FontSize="20" Margin="200,121,505,233" FontFamily="Roboto" Foreground="White"/>
                                         <TextBox x:Name="PlayerName" FontSize="20" Margin="357,126,205,233" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
                                         <Label Content="PLAYER SURNAME" FontSize="20" Margin="164,166,505,188" FontFamily="Roboto" Foreground="White"/>
                                         <TextBox x:Name="PlayerSurame" FontSize="20" Margin="357,167,205,192" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
-                                        <Button x:Name="PlayerAddButton" Style="{StaticResource ButtonStyle}" Content="ADD" Margin="344,228,245,119" Foreground="White" FontFamily="Roboto Medium" FontSize="16" Click="PlayerAddButton_Click" >
-                                            <Button.Background>
-                                                <SolidColorBrush Color="Black" Opacity="0.7"/>
-                                            </Button.Background>
-                                        </Button>
-                                    </Grid>
-                                </Border>
-                                <!--Assign team for player-->
-                                <Border x:Name="PlayerContent_AssignTeam" Visibility="Collapsed">
-                                    <Grid>
-                                        <Label Content="PLAYER NAME" FontSize="20" Margin="200,121,505,233" FontFamily="Roboto" Foreground="White"/>
-                                        <TextBox x:Name="PlayeName" FontSize="20" Margin="357,126,205,233" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
-                                        <Label Content="PLAYER SURNAME" FontSize="20" Margin="164,166,505,188" FontFamily="Roboto" Foreground="White"/>
-                                        <TextBox x:Name="PlayeSurame" FontSize="20" Margin="357,167,205,192" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
-                                    </Grid>
-                                </Border>
-                                <!--Leave team-->
-                                <Border x:Name="PlayerContent_LeaveTeam" Visibility="Collapsed">
-                                    <Grid>
-                                        <Label Content="PLAYER NAME" FontSize="20" Margin="200,121,505,233" FontFamily="Roboto" Foreground="White"/>
-                                        <TextBox x:Name="PlayName" FontSize="20" Margin="357,126,205,233" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
-                                        <Label Content="PLAYER SURNAME" FontSize="20" Margin="164,166,505,188" FontFamily="Roboto" Foreground="White"/>
-                                        <TextBox x:Name="PlaySurame" FontSize="20" Margin="357,167,205,192" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
-                                    </Grid>
-                                </Border>
-                                <!--Romeve player-->
-                                <Border x:Name="PlayerContent_Remove" Visibility="Collapsed">
-                                    <Grid>
-                                        <Label Content="PLAYER NAME" FontSize="20" Margin="200,121,505,233" FontFamily="Roboto" Foreground="White"/>
-                                        <TextBox x:Name="PlaName" FontSize="20" Margin="357,126,205,233" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
-                                        <Label Content="PLAYER SURNAME" FontSize="20" Margin="164,166,505,188" FontFamily="Roboto" Foreground="White"/>
-                                        <TextBox x:Name="PlaSurame" FontSize="20" Margin="357,167,205,192" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
-                                    </Grid>
-                                </Border>
-                                <!--Preview players-->
-                                <Border x:Name="PlayerContent_Preview" Visibility="Collapsed">
-                                    <Grid>
-                                        <Label Content="PLAYER NAME" FontSize="20" Margin="200,121,505,233" FontFamily="Roboto" Foreground="White"/>
-                                        <TextBox x:Name="PlName" FontSize="20" Margin="357,126,205,233" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
-                                        <Label Content="PLAYER SURNAME" FontSize="20" Margin="164,166,505,188" FontFamily="Roboto" Foreground="White"/>
-                                        <TextBox x:Name="PlSurame" FontSize="20" Margin="357,167,205,192" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
                                     </Grid>
                                 </Border>
 
 
-
-                            </Grid>
+                            </Border>
                         </Border>
                     </Grid>
                 </Border>
