@@ -6,8 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-//using static Backend.ConsoleDisplayOld;
-using static Backend.ConsoleDisplaySystem;
+//using static Backend.ConsoleCommunication.ConsoleDisplayOld;
+using static Backend.ConsoleCommunication.ConsoleDisplaySystem;
 
 namespace Backend
 {
