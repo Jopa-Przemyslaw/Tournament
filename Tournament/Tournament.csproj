@@ -58,6 +58,8 @@
     <Compile Include="AnimationsController.cs" />
     <Compile Include="MenuController.cs" />
     <Compile Include="MenuIconsController.cs" />
+    <Compile Include="NavbarController.cs" />
+    <Compile Include="NavbarIconsController.cs" />
     <Compile Include="Splash.xaml.cs">
       <DependentUpon>Splash.xaml</DependentUpon>
     </Compile>
@@ -106,7 +108,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="media\icons8-delete-64.png" />
@@ -208,6 +212,12 @@
   <ItemGroup>
     <Resource Include="media\icons8-in-referee-80.png" />
     <Resource Include="media\icons8-in-referee-bw-80.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Backend\Backend.csproj">
+      <Project>{72759569-17d0-4e9c-b73f-8730dd06f0b6}</Project>
+      <Name>Backend</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
