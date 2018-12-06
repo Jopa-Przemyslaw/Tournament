@@ -35,8 +35,8 @@ namespace Tournament
         readonly ImageBrush tournamentImageOn = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(new Uri(@"/media/icons8-leaderboard-64.png", UriKind.Relative)).Stream));
         readonly ImageBrush tournamentImageOff = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(new Uri(@"/media/icons8-leaderboard-bw-64.png", UriKind.Relative)).Stream));
 
-        MainWindow mainWindow;
         readonly Border[] borders;
+        MainWindow mainWindow;
 
         public MenuIconsController(ref Border[] borders, MainWindow mainWindow)
         {
@@ -136,7 +136,7 @@ namespace Tournament
                 TournamentIconOff();
             }
         }
-        
+
         public void SwitchOffMenuIcons()
         {
             if (borders[0].Visibility != System.Windows.Visibility.Collapsed)
@@ -180,7 +180,7 @@ namespace Tournament
                 TournamentIconOff();
             }
         }
-        
+
 
         public void PlayerIconOn()
         {
