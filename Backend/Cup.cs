@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Backend
 {
-    class Cup
+    public class Cup
     {
         /// <summary>
         /// The list of <see cref="Team" />s that takes part in a <see cref="Cup" />.
