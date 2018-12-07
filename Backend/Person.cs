@@ -4,7 +4,7 @@ namespace Backend
     /// <summary>
     /// Abstract representation of the <see cref="Person" /> class.
     /// </summary>
-    abstract class Person
+    public abstract class Person
     {
         /// <summary>
         /// Gets or sets the name of the <see cref="Person"/>.
