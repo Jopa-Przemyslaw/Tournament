@@ -8,7 +8,7 @@ namespace Backend
     /// <summary>
     /// Representation of the <see cref="Team" /> class.
     /// </summary>
-    class Team
+    public class Team
     {
         //TODO: Add statistics to players stats.
         #region Variables
