@@ -5,7 +5,7 @@ namespace Backend
     /// Representation of the <see cref="Player"/> class.
     /// </summary>
     /// <seealso cref="Backend.Person" />
-    class Player : Person
+    public class Player : Person
     {
         #region Variables
         /// <summary>
