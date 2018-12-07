@@ -5,7 +5,7 @@ namespace Backend
     /// Representation of the Referee class.
     /// </summary>
     /// <seealso cref="Backend.Person" />
-    class Referee : Person
+    public class Referee : Person
     {
         /// <summary>
         /// Gets the name of the <see cref="Referee"/>.
