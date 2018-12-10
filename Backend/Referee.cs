@@ -32,5 +32,10 @@ namespace Backend
         /// <param name="name">The name of the <see cref="Referee"/>.</param>
         /// <param name="surname">Thee <see cref="Referee"/>'s surname.</param>
         public Referee(string name,string surname) : base(name, surname) { }
+
+        public override string ToString()
+        {
+            return $"{base.name} {base.surname}";
+        }
     }
 }
