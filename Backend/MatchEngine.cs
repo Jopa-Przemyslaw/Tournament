@@ -4,10 +4,11 @@ using System.Threading;
 
 namespace Backend
 {
+    //TODO: klasa zmieniona na public
     /// <summary>
     /// Representation of <see cref="MatchEngine"/> class.
     /// </summary>
-    class MatchEngine
+    public class MatchEngine
     {
         /// <summary>
         /// The game time.
@@ -46,6 +47,13 @@ namespace Backend
         /// <param name="footballMatch">The football match.</param>
         /// <param name="isDeathmatch">If set to <c>true</c> than this is deathmatch.</param>
         public void SimulateFootballMatch(ref FootballMatch footballMatch, bool isDeathmatch)
+        {
+            Debug.WriteLine($"----------------------------------------------------------");
+            Engine(ref footballMatch, isDeathmatch);
+            Debug.WriteLine($"----------------------------------------------------------");
+        }
+
+        public async void SimulateFootballMatchAsync(FootballMatch footballMatch, bool isDeathmatch)
         {
             Debug.WriteLine($"----------------------------------------------------------");
             Engine(ref footballMatch, isDeathmatch);
@@ -199,6 +207,8 @@ namespace Backend
             }
             footballMatch.ReturnTeamA().AddMatchPlayed();
             footballMatch.ReturnTeamB().AddMatchPlayed();
+            System.Threading.Thread.Sleep(100);
+
         }
 
         /// <summary>
