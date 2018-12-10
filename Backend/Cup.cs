@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Backend
 {
@@ -34,10 +36,10 @@ namespace Backend
         /// <value>
         ///   <c>true</c> if this instance is finished; otherwise, <c>false</c>.
         /// </value>
-        public bool isFinished { get; private set; }
+        public bool isFinished { get; set; }
 
         private Random random;
-        private MatchEngine matchEngine;
+        public MatchEngine matchEngine;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Cup"/> class.
@@ -136,7 +138,7 @@ namespace Backend
         }
 
         /// <summary>
-        /// Starts the football <see cref="Cup" />.
+        /// Starts the football <see cref="Cup" />. Execution intended in console mode.
         /// </summary>
         /// <returns>
         /// The winner <see cref="Team" />.
@@ -201,7 +203,7 @@ namespace Backend
         /// Randoms two different <see cref="Team"/>s for the <see cref="Match"/> and returns them in object of <see cref="TwoTeams"/> type.
         /// </summary>
         /// <returns></returns>
-        private TwoTeams RandomTeamsForMatch(List<Team> listOfTeamsInCup)
+        public TwoTeams RandomTeamsForMatch(List<Team> listOfTeamsInCup)
         {
             List<Team> helpTeamList = new List<Team>(listOfTeamsInCup);
 
@@ -219,7 +221,7 @@ namespace Backend
         /// <returns>
         /// Object of <see cref="ThreeReferees" /> type.
         /// </returns>
-        private ThreeReferees RandomRefereesForMatch()
+        public ThreeReferees RandomRefereesForMatch()
         {
             List<Referee> helpRefereeList = new List<Referee>(listOfRefereesInCup);
 
@@ -243,5 +245,11 @@ namespace Backend
         {
             return random.Next(0, topRange - 1);
         }
+
+        public override string ToString()
+        {
+            return this.name;
+        }
     }
 }
+//TODO: metody TwoTeams i ThreeReferees, zmienna matchEngine, setter w isFinished zmienione na public
