@@ -5,7 +5,7 @@ namespace Backend
     /// Representation of <see cref="FootballMatch"/> class.
     /// </summary>
     /// <seealso cref="Backend.Match" />
-    class FootballMatch : Match
+    public class FootballMatch : Match
     {
         #region Variables
         /// <summary>
@@ -103,3 +103,4 @@ namespace Backend
         #endregion
     }
 }
+//TODO: klasa zmieniona na public
