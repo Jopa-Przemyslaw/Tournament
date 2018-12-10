@@ -6,7 +6,7 @@ namespace Backend.AuxiliaryClasses
     /// <see cref="Tuple"/> class that can hold three objects of <see cref="Referee"/> type.
     /// </summary>
     /// <seealso cref="System.Tuple{Backend.Referee, Backend.Referee, Backend.Referee}" />
-    class ThreeReferees : Tuple<Referee, Referee, Referee>
+    public class ThreeReferees : Tuple<Referee, Referee, Referee>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeReferees"/> class.
@@ -39,3 +39,4 @@ namespace Backend.AuxiliaryClasses
         public Referee GetSupportingReferee2 => this.Item3;
     }
 }
+//TODO: klasa zmieniona na public

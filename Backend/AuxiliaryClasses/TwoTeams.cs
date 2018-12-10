@@ -6,7 +6,7 @@ namespace Backend.AuxiliaryClasses
     /// <see cref="Tuple"/> class that can hold two objects of <see cref="Team"/> type.
     /// </summary>
     /// <seealso cref="System.Tuple{Backend.Team, Backend.Team}" />
-    class TwoTeams : Tuple<Team, Team>
+    public class TwoTeams : Tuple<Team, Team>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TwoTeams"/> class.
@@ -31,3 +31,4 @@ namespace Backend.AuxiliaryClasses
         public Team GetGuestTeam => this.Item2;
     }
 }
+//TODO: klasa zmieniona na public
