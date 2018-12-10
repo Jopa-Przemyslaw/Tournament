@@ -40,6 +40,13 @@ namespace Backend
 
         #region Getters N Setters
         /// <summary>
+        /// Gets the <see cref="Player"/>.
+        /// </summary>
+        /// <value>
+        /// The <see cref="Player"/>.
+        /// </value>
+        public Player GetPlayer => this;
+        /// <summary>
         /// Gets the name of the <see cref="Player"/>.
         /// </summary>
         /// <value>
@@ -60,7 +67,8 @@ namespace Backend
         /// <param name="playerTeam">The <see cref="Player"/>'s <see cref="Team"/>.</param>
         public void SetTeam(Team playerTeam)
         {
-            if (playerTeam != null)
+            //var xd = playerTeam.playersList.Find(x=>x.GetPlayer == this);
+            if (playerTeam != null && playerTeam.playersList.Find(x => x.GetPlayer == this) == null)
             {
                 if (playerTeam.playersList.Capacity > playerTeam.ReturnTeamCount())
                 {
@@ -70,8 +78,9 @@ namespace Backend
                 else
                     throw new System.Exception("Team is already full.");
             }
-            else
+            else if (playerTeam == null)
             {
+                this.playerTeam.playersList.Remove(this);
                 this.playerTeam = playerTeam;
             }
         }
@@ -165,5 +174,11 @@ namespace Backend
             trophiesWon++;
         }
         #endregion
+
+        public override string ToString()
+        {
+            string team = (this.playerTeam!=null)?this.playerTeam.name:"";
+            return $"{name} {surname} \t{team}";
+        }
     }
 }
