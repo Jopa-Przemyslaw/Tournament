@@ -5,7 +5,7 @@ namespace Backend
     /// <summary>
     /// Abstract representation of <see cref="Match"/> class.
     /// </summary>
-    abstract class Match
+    public abstract class Match
     {
         #region Variables
         /// <summary>
@@ -109,3 +109,4 @@ namespace Backend
         #endregion
     }
 }
+//TODO: klasa zmieniona na public
