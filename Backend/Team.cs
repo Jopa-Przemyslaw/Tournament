@@ -184,7 +184,7 @@ namespace Backend
 
         public override string ToString()
         {
-            return base.ToString() + ", name: " + this.name;
+            return $"{name}\t\t MP: {matchesPlayed}\tW: {wins}\tL: {lost}\tD: {draws}\tGS: {goalsScored}\tGL: {goalsLost}\tTW: {tournamentsWon}";
         }
     }
 }
