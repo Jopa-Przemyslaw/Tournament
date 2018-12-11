@@ -24,6 +24,12 @@ namespace Tournament
         readonly static Uri previewUriOff = new Uri(@"/media/icons8-preview-pane-bw-100.png", UriKind.Relative);
         readonly static Uri refereeUriOn = new Uri(@"/media/icons8-in-referee-80.png", UriKind.Relative);
         readonly static Uri refereeUriOff = new Uri(@"/media/icons8-in-referee-bw-80.png", UriKind.Relative);
+        readonly static Uri assignRefereeUriOn = new Uri(@"/media/icons8-in-referee-80.png", UriKind.Relative);
+        readonly static Uri assignRefereeUriOff = new Uri(@"/media/icons8-in-referee-bw-80.png", UriKind.Relative);
+        readonly static Uri playUriOn = new Uri(@"/media/icons8-next-80.png", UriKind.Relative);
+        readonly static Uri playUriOff = new Uri(@"/media/icons8-next-bw-80.png", UriKind.Relative);
+        readonly static Uri daisUriOn = new Uri(@"/media/icons8-leaderboard-64.png", UriKind.Relative);
+        readonly static Uri daisUriOff = new Uri(@"/media/icons8-leaderboard-bw-64.png", UriKind.Relative);
 
         readonly ImageBrush addImageOn =  new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(addUriOn).Stream));
         readonly ImageBrush addImageOff =  new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(addUriOff).Stream));
@@ -37,17 +43,91 @@ namespace Tournament
         readonly ImageBrush previewImageOff =  new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(previewUriOff).Stream));
         readonly ImageBrush refereeImageOn = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(refereeUriOn).Stream));
         readonly ImageBrush refereeImageOff = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(refereeUriOff).Stream));
+        readonly ImageBrush assignRefereeImageOn = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(assignRefereeUriOn).Stream));
+        readonly ImageBrush assignRefereeImageOff = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(assignRefereeUriOff).Stream));
+        readonly ImageBrush playImageOn = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(playUriOn).Stream));
+        readonly ImageBrush playImageOff = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(playUriOff).Stream));
+        readonly ImageBrush daisImageOn = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(daisUriOn).Stream));
+        readonly ImageBrush daisImageOff = new ImageBrush(BitmapFrame.Create(Application.GetResourceStream(daisUriOff).Stream));
 
+        MainWindow mainWindow;
 
         public NavbarIconsController()
         {
         }
 
-        public void SwitchNavbarIconsOff(Border[] borders)
+        public void SwitchNavbarIconOn(ref MenuItem menuItem)
         {
-            foreach (var item in borders)
+            if (menuItem.Name == "NavBarItem_Player" || menuItem.Name == "NavBarItem_Team" || menuItem.Name == "NavBarItem_Referee" || menuItem.Name == "NavBarItem_Cup")
             {
-                item.Visibility = Visibility.Collapsed;
+                AddIconOn(ref menuItem);
+            }
+            else if (menuItem.Name == "NavBarItem2_Player" || menuItem.Name == "NavBarItem1_Team" || menuItem.Name == "NavBarItem1_Cup")
+            {
+                AssignIconOn(ref menuItem);
+            }
+            else if (menuItem.Name == "NavBarItem3_Player" || menuItem.Name == "NavBarItem2_Team" || menuItem.Name == "NavBarItem3_Cup")
+            {
+                LeaveTeamIconOn(ref menuItem);
+            }
+            else if (menuItem.Name == "NavBarItem4_Player" || menuItem.Name == "NavBarItem3_Team" || menuItem.Name == "NavBarItem1_Referee")
+            {
+                RemoveIconOn(ref menuItem);
+            }
+            else if (menuItem.Name == "NavBarItem5_Player" || menuItem.Name == "NavBarItem4_Team" || menuItem.Name == "NavBarItem2_Referee" || menuItem.Name == "NavBarItem4_Cup" || menuItem.Name == "NavBarItem5_Cup")
+            {
+                PreviewIconOn(ref menuItem);
+            }
+            else if(menuItem.Name == "NavBarItem2_Cup")
+            {
+                AssignRefereeIconOn(ref menuItem);
+            }
+            else if (menuItem.Name == "NavBarItem_Tournament")
+            {
+                PlayIconOn(ref menuItem);
+            }
+            else if (menuItem.Name == "NavBarItem1_Tournament")
+            {
+                DaisIconOn(ref menuItem);
+            }
+        }
+
+        public void SwitchNavbarIconsOff(ref MenuItem[] menuItems)
+        {
+            for (int i = 0; i < menuItems.Length; i++)
+            {
+                if (menuItems[i].Name == "NavBarItem_Player" || menuItems[i].Name == "NavBarItem_Team" || menuItems[i].Name == "NavBarItem_Referee" || menuItems[i].Name == "NavBarItem_Cup")
+                {
+                    AddIconOff(ref menuItems[i]);
+                }
+                else if (menuItems[i].Name == "NavBarItem2_Player" || menuItems[i].Name == "NavBarItem1_Team" || menuItems[i].Name == "NavBarItem1_Cup")
+                {
+                    AssignIconOff(ref menuItems[i]);
+                }
+                else if (menuItems[i].Name == "NavBarItem3_Player" || menuItems[i].Name == "NavBarItem2_Team" || menuItems[i].Name == "NavBarItem3_Cup")
+                {
+                    LeaveTeamIconOff(ref menuItems[i]);
+                }
+                else if (menuItems[i].Name == "NavBarItem4_Player" || menuItems[i].Name == "NavBarItem3_Team" || menuItems[i].Name == "NavBarItem1_Referee")
+                {
+                    RemoveIconOff(ref menuItems[i]);
+                }
+                else if (menuItems[i].Name == "NavBarItem5_Player" || menuItems[i].Name == "NavBarItem4_Team" || menuItems[i].Name == "NavBarItem2_Referee" || menuItems[i].Name == "NavBarItem4_Cup" || menuItems[i].Name == "NavBarItem5_Cup")
+                {
+                    PreviewIconOff(ref menuItems[i]);
+                }
+                else if(menuItems[i].Name == "NavBarItem2_Cup")
+                {
+                    AssignRefereeIconOff(ref menuItems[i]);
+                }
+                else if(menuItems[i].Name == "NavBarItem_Tournament")
+                {
+                    PlayIconOff(ref menuItems[i]);
+                }
+                else if (menuItems[i].Name == "NavBarItem1_Tournament")
+                {
+                    DaisIconOff(ref menuItems[i]);
+                }
             }
         }
 
@@ -98,6 +178,30 @@ namespace Tournament
         public void RefereeIconOff(ref MenuItem menuItem)
         {
             menuItem.Background = refereeImageOff;
+        }
+        public void AssignRefereeIconOn(ref MenuItem menuItem)
+        {
+            menuItem.Background = assignRefereeImageOn;
+        }
+        public void AssignRefereeIconOff(ref MenuItem menuItem)
+        {
+            menuItem.Background = assignRefereeImageOff;
+        }
+        public void PlayIconOn(ref MenuItem menuItem)
+        {
+            menuItem.Background = playImageOn;
+        }
+        public void PlayIconOff(ref MenuItem menuItem)
+        {
+            menuItem.Background = playImageOff;
+        }
+        public void DaisIconOn(ref MenuItem menuItem)
+        {
+            menuItem.Background = daisImageOn;
+        }
+        public void DaisIconOff(ref MenuItem menuItem)
+        {
+            menuItem.Background = daisImageOff;
         }
     }
 }
