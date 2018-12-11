@@ -67,7 +67,7 @@
                 </Border>
 
                 <!--Container with PLAYER content-->
-                <Border x:Name="ContainerContent_Player" Tag="PLAYER" Margin="5,80,120,15" Visibility="Visible">
+                <Border x:Name="ContainerContent_Player" Tag="PLAYER" Margin="5,80,120,15" Visibility="Collapsed">
                     <Border.Background>
                         <SolidColorBrush Color="Pink" Opacity=".2"/>
                     </Border.Background>
@@ -82,7 +82,7 @@
                                 <Menu.Background>
                                     <SolidColorBrush Color="Red" Opacity=".1"/>
                                 </Menu.Background>
-                                <MenuItem x:Name="NavBarItem_Player" Style="{StaticResource MenuItemStyle}" Margin="7,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Create new player" MouseEnter="NavBarItem_Player_MouseEnter" MouseLeave="NavBarItem_Player_MouseLeave" Click="NavBarItem_Player_Click">
+                                <MenuItem x:Name="NavBarItem_Player" Style="{StaticResource MenuItemStyle}" Margin="7,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Create new player" MouseEnter="NavBarItem_Player_MouseEnter" MouseLeave="NavBarItem_Player_MouseLeave" Click="NavBarItem_Player_Click" FontFamily="Roboto">
                                     <MenuItem.Background>
                                         <ImageBrush ImageSource="media/icons8-plus-bw-512.png"/>
                                     </MenuItem.Background>
@@ -152,57 +152,69 @@
                             <Grid x:Name="ContainerPlayerContent">
 
                                 <!--Add player-->
-                                <Border x:Name="PlayerContent_Add" Visibility="Visible">
+                                <Border x:Name="PlayerContent_Add" Visibility="Collapsed">
                                     <Grid>
                                         <Label Content="PLAYER NAME" FontSize="20" Margin="200,121,505,233" FontFamily="Roboto" Foreground="White"/>
-                                        <TextBox x:Name="PlayerName" FontSize="20" Margin="357,126,205,233" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
+                                        <TextBox x:Name="PlayerName" Text="" FontSize="20" Margin="357,126,205,233" Height="35" Width="300" Background="#FF363636" Foreground="White" FontFamily="Roboto"/>
                                         <Label Content="PLAYER SURNAME" FontSize="20" Margin="164,166,505,188" FontFamily="Roboto" Foreground="White"/>
-                                        <TextBox x:Name="PlayerSurame" FontSize="20" Margin="357,167,205,192" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
-                                        <Button x:Name="PlayerAddButton" Style="{StaticResource ButtonStyle}" Content="ADD" Margin="344,228,245,119" Foreground="White" FontFamily="Roboto Medium" FontSize="16" Click="PlayerAddButton_Click" >
+                                        <TextBox x:Name="PlayerSurame" FontSize="20" Margin="357,167,205,192" Height="35" Width="300" Background="#FF363636" Foreground="White" FontFamily="Roboto"/>
+                                        <Button x:Name="PlayerContent_AddButton" Style="{StaticResource ButtonStyle}" Content="ADD" Margin="344,228,245,119" Foreground="White" FontFamily="Roboto Medium" FontSize="16" Click="PlayerContent_AddButton_Click" >
                                             <Button.Background>
                                                 <SolidColorBrush Color="Black" Opacity="0.7"/>
                                             </Button.Background>
                                         </Button>
                                     </Grid>
                                 </Border>
+                                <!--Choose player-->
+                                <Border x:Name="PlayerContent_ChoosePlayer" Visibility="Collapsed">
+                                    <Grid>
+                                        <ListBox x:Name="PlayerContent_PlayerListBox" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="PlayerContent_PlayerListBox_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                            </ListBox.Background>
+                                        </ListBox>
+                                    </Grid>
+                                </Border>
                                 <!--Assign team for player-->
                                 <Border x:Name="PlayerContent_AssignTeam" Visibility="Collapsed">
                                     <Grid>
-                                        <Label Content="PLAYER NAME" FontSize="20" Margin="200,121,505,233" FontFamily="Roboto" Foreground="White"/>
-                                        <TextBox x:Name="PlayeName" FontSize="20" Margin="357,126,205,233" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
-                                        <Label Content="PLAYER SURNAME" FontSize="20" Margin="164,166,505,188" FontFamily="Roboto" Foreground="White"/>
-                                        <TextBox x:Name="PlayeSurame" FontSize="20" Margin="357,167,205,192" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
+                                        <ListBox x:Name="PlayerContent_AssignTeam_ListBox" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="PlayerContent_AssignTeam_ListBox_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                            </ListBox.Background>
+                                        </ListBox>
                                     </Grid>
                                 </Border>
                                 <!--Leave team-->
                                 <Border x:Name="PlayerContent_LeaveTeam" Visibility="Collapsed">
                                     <Grid>
-                                        <Label Content="PLAYER NAME" FontSize="20" Margin="200,121,505,233" FontFamily="Roboto" Foreground="White"/>
-                                        <TextBox x:Name="PlayName" FontSize="20" Margin="357,126,205,233" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
-                                        <Label Content="PLAYER SURNAME" FontSize="20" Margin="164,166,505,188" FontFamily="Roboto" Foreground="White"/>
-                                        <TextBox x:Name="PlaySurame" FontSize="20" Margin="357,167,205,192" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
+                                        <ListBox x:Name="PlayerContent_LeaveTeam_ListBox" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="PlayerContent_LeaveTeam_ListBox_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.3"/>
+                                            </ListBox.Background>
+                                        </ListBox>
                                     </Grid>
                                 </Border>
                                 <!--Romeve player-->
                                 <Border x:Name="PlayerContent_Remove" Visibility="Collapsed">
                                     <Grid>
-                                        <Label Content="PLAYER NAME" FontSize="20" Margin="200,121,505,233" FontFamily="Roboto" Foreground="White"/>
-                                        <TextBox x:Name="PlaName" FontSize="20" Margin="357,126,205,233" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
-                                        <Label Content="PLAYER SURNAME" FontSize="20" Margin="164,166,505,188" FontFamily="Roboto" Foreground="White"/>
-                                        <TextBox x:Name="PlaSurame" FontSize="20" Margin="357,167,205,192" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
+                                        <ListBox x:Name="PlayerContent_RemovePlayer_ListBox" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="PlayerContent_RemovePlayer_ListBox_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                            </ListBox.Background>
+                                        </ListBox>
                                     </Grid>
                                 </Border>
                                 <!--Preview players-->
                                 <Border x:Name="PlayerContent_Preview" Visibility="Collapsed">
                                     <Grid>
-                                        <Label Content="PLAYER NAME" FontSize="20" Margin="200,121,505,233" FontFamily="Roboto" Foreground="White"/>
-                                        <TextBox x:Name="PlName" FontSize="20" Margin="357,126,205,233" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
-                                        <Label Content="PLAYER SURNAME" FontSize="20" Margin="164,166,505,188" FontFamily="Roboto" Foreground="White"/>
-                                        <TextBox x:Name="PlSurame" FontSize="20" Margin="357,167,205,192" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
+                                        <ListBox x:Name="PlayerContent_PreviewPlayers_ListBox" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="PlayerContent_PreviewPlayers_ListBox_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                            </ListBox.Background>
+                                        </ListBox>
                                     </Grid>
                                 </Border>
-
-
 
                             </Grid>
                         </Border>
@@ -213,7 +225,7 @@
                 <!--Container with TEAM content-->
                 <Border x:Name="ContainerContent_Team" Tag="TEAM" Margin="5,80,120,15" Visibility="Collapsed">
                     <Border.Background>
-                        <SolidColorBrush Color="Pink" Opacity=".1"/>
+                        <SolidColorBrush Color="Beige" Opacity=".1"/>
                     </Border.Background>
                     <!--Whole content-->
                     <Grid>
@@ -226,7 +238,7 @@
                                 <Menu.Background>
                                     <SolidColorBrush Color="Red" Opacity=".1"/>
                                 </Menu.Background>
-                                <MenuItem x:Name="NavBarItem_Team" Style="{StaticResource MenuItemStyle}" Margin="7,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Create new team" MouseEnter="NavBarItem_Team_MouseEnter" MouseLeave="NavBarItem_Team_MouseLeave">
+                                <MenuItem x:Name="NavBarItem_Team" Style="{StaticResource MenuItemStyle}" Margin="7,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Create new team" MouseEnter="NavBarItem_Team_MouseEnter" MouseLeave="NavBarItem_Team_MouseLeave" Click="NavBarItem_Team_Click">
                                     <MenuItem.Background>
                                         <ImageBrush ImageSource="media/icons8-plus-bw-512.png"/>
                                     </MenuItem.Background>
@@ -237,7 +249,7 @@
                                     </MenuItem.Background>
                                 </MenuItem>
 
-                                <MenuItem x:Name="NavBarItem1_Team" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Assign player to team" MouseEnter="NavBarItem1_Team_MouseEnter" MouseLeave="NavBarItem1_Team_MouseLeave">
+                                <MenuItem x:Name="NavBarItem1_Team" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Assign player to team" MouseEnter="NavBarItem1_Team_MouseEnter" MouseLeave="NavBarItem1_Team_MouseLeave" Click="NavBarItem1_Team_Click">
                                     <MenuItem.Background>
                                         <ImageBrush ImageSource="media/icons8-to-team-bw-64.png"/>
                                     </MenuItem.Background>
@@ -248,7 +260,7 @@
                                     </MenuItem.Background>
                                 </MenuItem>
 
-                                <MenuItem x:Name="NavBarItem2_Team" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Kick from team" MouseEnter="NavBarItem2_Team_MouseEnter" MouseLeave="NavBarItem2_Team_MouseLeave">
+                                <MenuItem x:Name="NavBarItem2_Team" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Kick from team" MouseEnter="NavBarItem2_Team_MouseEnter" MouseLeave="NavBarItem2_Team_MouseLeave" Click="NavBarItem2_Team_Click">
                                     <MenuItem.Background>
                                         <ImageBrush ImageSource="media/icons8-out-of-team-bw-64.png"/>
                                     </MenuItem.Background>
@@ -259,7 +271,7 @@
                                     </MenuItem.Background>
                                 </MenuItem>
 
-                                <MenuItem x:Name="NavBarItem3_Team" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Remove team" MouseEnter="NavBarItem3_Team_MouseEnter" MouseLeave="NavBarItem3_Team_MouseLeave">
+                                <MenuItem x:Name="NavBarItem3_Team" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Remove team" MouseEnter="NavBarItem3_Team_MouseEnter" MouseLeave="NavBarItem3_Team_MouseLeave" Click="NavBarItem3_Team_Click">
                                     <MenuItem.Background>
                                         <ImageBrush ImageSource="media/icons8-delete-80.png"/>
                                     </MenuItem.Background>
@@ -270,7 +282,7 @@
                                     </MenuItem.Background>
                                 </MenuItem>
 
-                                <MenuItem x:Name="NavBarItem4_Team" Style="{StaticResource MenuButtonStyle}" Margin="5,0,7,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Preview team" MouseEnter="NavBarItem4_Team_MouseEnter" MouseLeave="NavBarItem4_Team_MouseLeave">
+                                <MenuItem x:Name="NavBarItem4_Team" Style="{StaticResource MenuButtonStyle}" Margin="5,0,7,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Preview team" MouseEnter="NavBarItem4_Team_MouseEnter" MouseLeave="NavBarItem4_Team_MouseLeave" Click="NavBarItem4_Team_Click">
                                     <MenuItem.Background>
                                         <ImageBrush ImageSource="media/icons8-preview-pane-bw-100.png"/>
                                     </MenuItem.Background>
@@ -278,18 +290,87 @@
                             </Menu>
                         </Border>
                         <!--Content body-->
-                        <Border x:Name="ContainerTeamContent" Margin="0,75,0,0" HorizontalAlignment="Stretch" Height="Auto" CornerRadius="10">
+                        <Border Margin="0,75,0,0" HorizontalAlignment="Stretch" Height="Auto" CornerRadius="10">
                             <Border.Background>
-                                <SolidColorBrush Color="Blue" Opacity=".1"/>
+                                <SolidColorBrush Color="Blue" Opacity=".2"/>
                             </Border.Background>
+                            <Grid>
 
-                            <Border x:Name="TeamAdd">
-                                <Grid>
-                                    <Label Content="TEAM NAME" FontSize="20" Margin="200,121,505,233" FontFamily="Roboto" Foreground="White"/>
-                                    <TextBox x:Name="TeamName" FontSize="20" Margin="357,126,205,233" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
-                                </Grid>
-                            </Border>
+                                <!--Add team-->
+                                <Border x:Name="TeamContent_Add" Visibility="Collapsed">
+                                    <Grid>
+                                        <Label Content="TEAM NAME" FontSize="20" Margin="200,121,505,233" FontFamily="Roboto" Foreground="White"/>
+                                        <TextBox x:Name="TeamName" Text="" FontSize="20" Margin="357,126,205,233" Height="35" Width="300" Background="#FF363636" Foreground="White" FontFamily="Roboto"/>
+                                        <Button x:Name="TeamContent_AddButton" Style="{StaticResource ButtonStyle}" Content="ADD" Margin="344,228,245,119" Foreground="White" FontFamily="Roboto Medium" FontSize="16" Click="TeamContent_AddButton_Click" >
+                                            <Button.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.7"/>
+                                            </Button.Background>
+                                        </Button>
+                                    </Grid>
+                                </Border>
+                                <!--Choose team-->
+                                <Border x:Name="TeamContent_ChooseTeam" Visibility="Collapsed">
+                                    <Grid>
+                                        <ListBox x:Name="TeamContent_TeamListBox" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="TeamContent_TeamListBox_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                            </ListBox.Background>
+                                        </ListBox>
+                                    </Grid>
+                                </Border>
+                                <!--Assign player to team-->
+                                <Border x:Name="TeamContent_AssignPlayer" Visibility="Collapsed">
+                                    <Grid>
+                                        <ListBox x:Name="TeamContent_AssignPlayer_ListBox" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="TeamContent_AssignPlayer_ListBox_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                            </ListBox.Background>
+                                        </ListBox>
+                                    </Grid>
+                                </Border>
+                                <!--Choose team 2-->
+                                <Border x:Name="TeamContent_ChooseTeam2" Visibility="Collapsed">
+                                    <Grid>
+                                        <ListBox x:Name="TeamContent_TeamListBox2" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="TeamContent_TeamListBox2_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                            </ListBox.Background>
+                                        </ListBox>
+                                    </Grid>
+                                </Border>
+                                <!--Remove player from team-->
+                                <Border x:Name="TeamContent_KickFromTeam" Visibility="Collapsed">
+                                    <Grid>
+                                        <ListBox x:Name="TeamContent_KickFromTeam_ListBox" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="TeamContent_KickFromTeam_ListBox_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.3"/>
+                                            </ListBox.Background>
+                                        </ListBox>
+                                    </Grid>
+                                </Border>
+                                <!--Romeve team-->
+                                <Border x:Name="TeamContent_Remove" Visibility="Collapsed">
+                                    <Grid>
+                                        <ListBox x:Name="TeamContent_RemoveTeam_ListBox" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="TeamContent_RemoveTeam_ListBox_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                            </ListBox.Background>
+                                        </ListBox>
+                                    </Grid>
+                                </Border>
+                                <!--Preview teams-->
+                                <Border x:Name="TeamContent_Preview" Visibility="Collapsed">
+                                    <Grid>
+                                        <ListBox x:Name="TeamContent_PreviewTeams_ListBox" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="TeamContent_PreviewTeams_ListBox_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                            </ListBox.Background>
+                                        </ListBox>
+                                    </Grid>
+                                </Border>
 
+
+                            </Grid>
                         </Border>
                     </Grid>
                 </Border>
@@ -311,7 +392,7 @@
                                 <Menu.Background>
                                     <SolidColorBrush Color="Red" Opacity=".1"/>
                                 </Menu.Background>
-                                <MenuItem x:Name="NavBarItem_Referee" Style="{StaticResource MenuItemStyle}" Margin="7,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Create new team" MouseEnter="NavBarItem_Referee_MouseEnter" MouseLeave="NavBarItem_Referee_MouseLeave">
+                                <MenuItem x:Name="NavBarItem_Referee" Style="{StaticResource MenuItemStyle}" Margin="7,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Create new team" MouseEnter="NavBarItem_Referee_MouseEnter" MouseLeave="NavBarItem_Referee_MouseLeave" Click="NavBarItem_Referee_Click">
                                     <MenuItem.Background>
                                         <ImageBrush ImageSource="media/icons8-plus-bw-512.png"/>
                                     </MenuItem.Background>
@@ -322,7 +403,7 @@
                                     </MenuItem.Background>
                                 </MenuItem>
 
-                                <MenuItem x:Name="NavBarItem1_Referee" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Remove team" MouseEnter="NavBarItem1_Referee_MouseEnter" MouseLeave="NavBarItem1_Referee_MouseLeave">
+                                <MenuItem x:Name="NavBarItem1_Referee" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Remove team" MouseEnter="NavBarItem1_Referee_MouseEnter" MouseLeave="NavBarItem1_Referee_MouseLeave" Click="NavBarItem1_Referee_Click">
                                     <MenuItem.Background>
                                         <ImageBrush ImageSource="media/icons8-delete-80.png"/>
                                     </MenuItem.Background>
@@ -333,7 +414,7 @@
                                     </MenuItem.Background>
                                 </MenuItem>
 
-                                <MenuItem x:Name="NavBarItem2_Referee" Style="{StaticResource MenuButtonStyle}" Margin="5,0,7,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Preview team" MouseEnter="NavBarItem2_Referee_MouseEnter" MouseLeave="NavBarItem2_Referee_MouseLeave">
+                                <MenuItem x:Name="NavBarItem2_Referee" Style="{StaticResource MenuButtonStyle}" Margin="5,0,7,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Preview team" MouseEnter="NavBarItem2_Referee_MouseEnter" MouseLeave="NavBarItem2_Referee_MouseLeave" Click="NavBarItem2_Referee_Click">
                                     <MenuItem.Background>
                                         <ImageBrush ImageSource="media/icons8-preview-pane-bw-100.png"/>
                                     </MenuItem.Background>
@@ -345,16 +426,44 @@
                             <Border.Background>
                                 <SolidColorBrush Color="Blue" Opacity=".1"/>
                             </Border.Background>
+                            <Grid>
 
-                            <Border x:Name="RefereeAdd">
-                                <Grid>
-                                    <Label Content="REFEREE NAME" FontSize="20" Margin="200,121,505,233" FontFamily="Roboto" Foreground="White"/>
-                                    <TextBox x:Name="RefereeName" FontSize="20" Margin="357,126,205,233" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
-                                    <Label Content="REFEREE SURNAME" FontSize="20" Margin="164,166,505,188" FontFamily="Roboto" Foreground="White"/>
-                                    <TextBox x:Name="RefereeSurame" FontSize="20" Margin="357,167,205,192" Height="35" Width="300" Background="#FF363636" Foreground="White"/>
-                                </Grid>
-                            </Border>
+                                <!--Add referee-->
+                                <Border x:Name="RefereeContent_Add" Visibility="Collapsed">
+                                    <Grid>
+                                        <Label Content="REFEREE NAME" FontSize="20" Margin="200,121,505,233" FontFamily="Roboto" Foreground="White"/>
+                                        <TextBox x:Name="RefereeName" Text="" FontSize="20" Margin="357,126,205,233" Height="35" Width="300" Background="#FF363636" Foreground="White" FontFamily="Roboto"/>
+                                        <Label Content="REFEREE SURNAME" FontSize="20" Margin="164,166,505,188" FontFamily="Roboto" Foreground="White"/>
+                                        <TextBox x:Name="RefereeSurame" FontSize="20" Margin="357,167,205,192" Height="35" Width="300" Background="#FF363636" Foreground="White" FontFamily="Roboto"/>
+                                        <Button x:Name="RefereeContent_AddButton" Style="{StaticResource ButtonStyle}" Content="ADD" Margin="344,228,245,119" Foreground="White" FontFamily="Roboto Medium" FontSize="16" Click="RefereeContent_AddButton_Click" >
+                                            <Button.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.7"/>
+                                            </Button.Background>
+                                        </Button>
+                                    </Grid>
+                                </Border>
+                                <!--Romeve referee-->
+                                <Border x:Name="RefereeContent_Remove" Visibility="Collapsed">
+                                    <Grid>
+                                        <ListBox x:Name="RefereeContent_RemoveReferee_ListBox" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="RefereeContent_RemoveReferee_ListBox_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                            </ListBox.Background>
+                                        </ListBox>
+                                    </Grid>
+                                </Border>
+                                <!--Preview referee-->
+                                <Border x:Name="RefereeContent_Preview" Visibility="Collapsed">
+                                    <Grid>
+                                        <ListBox x:Name="RefereeContent_PreviewReferee_ListBox" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="RefereeContent_PreviewReferee_ListBox_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                            </ListBox.Background>
+                                        </ListBox>
+                                    </Grid>
+                                </Border>
 
+                            </Grid>
                         </Border>
                     </Grid>
                 </Border>
@@ -376,7 +485,7 @@
                                 <Menu.Background>
                                     <SolidColorBrush Color="Red" Opacity=".1"/>
                                 </Menu.Background>
-                                <MenuItem x:Name="NavBarItem_Cup" Style="{StaticResource MenuItemStyle}" Margin="7,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Create new cup" MouseEnter="NavBarItem_Cup_MouseEnter" MouseLeave="NavBarItem_Cup_MouseLeave">
+                                <MenuItem x:Name="NavBarItem_Cup" Style="{StaticResource MenuItemStyle}" Margin="7,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Create new cup" MouseEnter="NavBarItem_Cup_MouseEnter" MouseLeave="NavBarItem_Cup_MouseLeave" Click="NavBarItem_Cup_Click">
                                     <MenuItem.Background>
                                         <ImageBrush ImageSource="media/icons8-plus-bw-512.png"/>
                                     </MenuItem.Background>
@@ -387,7 +496,7 @@
                                     </MenuItem.Background>
                                 </MenuItem>
 
-                                <MenuItem x:Name="NavBarItem1_Cup" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Sign up team for a cup" MouseEnter="NavBarItem1_Cup_MouseEnter" MouseLeave="NavBarItem1_Cup_MouseLeave">
+                                <MenuItem x:Name="NavBarItem1_Cup" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Sign up team for a cup" MouseEnter="NavBarItem1_Cup_MouseEnter" MouseLeave="NavBarItem1_Cup_MouseLeave" Click="NavBarItem1_Cup_Click">
                                     <MenuItem.Background>
                                         <ImageBrush ImageSource="media/icons8-to-team-bw-64.png"/>
                                     </MenuItem.Background>
@@ -398,7 +507,7 @@
                                     </MenuItem.Background>
                                 </MenuItem>
 
-                                <MenuItem x:Name="NavBarItem2_Cup" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Sign up referee for a cup" MouseEnter="NavBarItem2_Cup_MouseEnter" MouseLeave="NavBarItem2_Cup_MouseLeave">
+                                <MenuItem x:Name="NavBarItem2_Cup" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Sign up referee for a cup" MouseEnter="NavBarItem2_Cup_MouseEnter" MouseLeave="NavBarItem2_Cup_MouseLeave" Click="NavBarItem2_Cup_Click">
                                     <MenuItem.Background>
                                         <ImageBrush ImageSource="media/icons8-in-referee-bw-80.png"/>
                                     </MenuItem.Background>
@@ -409,7 +518,7 @@
                                     </MenuItem.Background>
                                 </MenuItem>
 
-                                <MenuItem x:Name="NavBarItem3_Cup" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Check out teams of a cup" MouseEnter="NavBarItem3_Cup_MouseEnter" MouseLeave="NavBarItem3_Cup_MouseLeave">
+                                <MenuItem x:Name="NavBarItem3_Cup" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Check out teams of a cup" MouseEnter="NavBarItem3_Cup_MouseEnter" MouseLeave="NavBarItem3_Cup_MouseLeave" Click="NavBarItem3_Cup_Click">
                                     <MenuItem.Background>
                                         <ImageBrush ImageSource="media/icons8-out-of-team-bw-64.png"/>
                                     </MenuItem.Background>
@@ -420,7 +529,7 @@
                                     </MenuItem.Background>
                                 </MenuItem>
 
-                                <MenuItem x:Name="NavBarItem4_Cup" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Teams in cup preview" MouseEnter="NavBarItem4_Cup_MouseEnter" MouseLeave="NavBarItem4_Cup_MouseLeave">
+                                <MenuItem x:Name="NavBarItem4_Cup" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Teams in cup preview" MouseEnter="NavBarItem4_Cup_MouseEnter" MouseLeave="NavBarItem4_Cup_MouseLeave" Click="NavBarItem4_Cup_Click">
                                     <MenuItem.Background>
                                         <ImageBrush ImageSource="media/icons8-preview-pane-bw-100.png"/>
                                     </MenuItem.Background>
@@ -431,14 +540,9 @@
                                     </MenuItem.Background>
                                 </MenuItem>
 
-                                <MenuItem x:Name="NavBarItem5_Cup" Style="{StaticResource MenuButtonStyle}" Margin="5,0,7,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Referees in cup preview" MouseEnter="NavBarItem5_Cup_MouseEnter" MouseLeave="NavBarItem5_Cup_MouseLeave">
+                                <MenuItem x:Name="NavBarItem5_Cup" Style="{StaticResource MenuButtonStyle}" Margin="5,0,7,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Referees in cup preview" MouseEnter="NavBarItem5_Cup_MouseEnter" MouseLeave="NavBarItem5_Cup_MouseLeave" Click="NavBarItem5_Cup_Click">
                                     <MenuItem.Background>
                                         <ImageBrush ImageSource="media/icons8-preview-pane-bw-100.png"/>
-                                    </MenuItem.Background>
-                                </MenuItem>
-                                <MenuItem Style="{StaticResource MenuItemStyle}" HorizontalAlignment="Stretch" Width="5" VerticalAlignment="Stretch" Tag="mySeparator">
-                                    <MenuItem.Background>
-                                        <ImageBrush ImageSource="media/icons8-column-100.png"/>
                                     </MenuItem.Background>
                                 </MenuItem>
                             </Menu>
@@ -446,15 +550,216 @@
                         <!--Content body-->
                         <Border x:Name="ContainerCupContent" Margin="0,75,0,0" HorizontalAlignment="Stretch" Height="Auto" CornerRadius="10">
                             <Border.Background>
-                                <SolidColorBrush Color="Blue" Opacity=".1"/>
+                                <SolidColorBrush Color="Red" Opacity=".1"/>
                             </Border.Background>
+                            <Grid>
+
+                                <!--Add cup-->
+                                <Border x:Name="CupContent_Add" Visibility="Collapsed">
+                                    <Grid>
+                                        <Label Content="CUP NAME" FontSize="20" Margin="200,121,505,233" FontFamily="Roboto" Foreground="White"/>
+                                        <TextBox x:Name="CupName" Text="" FontSize="20" Margin="357,126,205,233" Height="35" Width="300" Background="#FF363636" Foreground="White" FontFamily="Roboto"/>
+                                        <Button x:Name="CupContent_AddButton" Style="{StaticResource ButtonStyle}" Content="ADD" Margin="344,228,245,119" Foreground="White" FontFamily="Roboto Medium" FontSize="16" Click="CupContent_AddButton_Click" >
+                                            <Button.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.7"/>
+                                            </Button.Background>
+                                        </Button>
+                                    </Grid>
+                                </Border>
+                                <!--Choose cup-->
+                                <Border x:Name="CupContent_ChooseCup" Visibility="Collapsed">
+                                    <Grid>
+                                        <ListBox x:Name="CupContent_CupListBox" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="CupContent_CupListBox_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                            </ListBox.Background>
+                                        </ListBox>
+                                    </Grid>
+                                </Border>
+                                <!--Assign team for cup-->
+                                <Border x:Name="CupContent_AssignTeam" Visibility="Collapsed">
+                                    <Grid>
+                                        <ListBox x:Name="CupContent_AssignTeam_ListBox" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="CupContent_AssignTeam_ListBox_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                            </ListBox.Background>
+                                        </ListBox>
+                                    </Grid>
+                                </Border>
+                                <!--Choose cup 2-->
+                                <Border x:Name="CupContent_ChooseCup2" Visibility="Collapsed">
+                                    <Grid>
+                                        <ListBox x:Name="CupContent_CupListBox2" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="CupContent_CupListBox2_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                            </ListBox.Background>
+                                        </ListBox>
+                                    </Grid>
+                                </Border>
+                                <!--Assign referee for cup-->
+                                <Border x:Name="CupContent_AssignReferee" Visibility="Collapsed">
+                                    <Grid>
+                                        <ListBox x:Name="CupContent_AssignReferee_ListBox" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="CupContent_AssignReferee_ListBox_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                            </ListBox.Background>
+                                        </ListBox>
+                                    </Grid>
+                                </Border>
+                                <!--Choose cup 3-->
+                                <Border x:Name="CupContent_ChooseCup3" Visibility="Collapsed">
+                                    <Grid>
+                                        <ListBox x:Name="CupContent_CupListBox3" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="CupContent_CupListBox3_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                            </ListBox.Background>
+                                        </ListBox>
+                                    </Grid>
+                                </Border>
+                                <!--Remove team from cup-->
+                                <Border x:Name="CupContent_RemoveTeam" Visibility="Collapsed">
+                                    <Grid>
+                                        <ListBox x:Name="CupContent_RemoveTeam_ListBox" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="CupContent_RemoveTeam_ListBox_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                            </ListBox.Background>
+                                        </ListBox>
+                                    </Grid>
+                                </Border>
+                                <!--Choose cup 4-->
+                                <Border x:Name="CupContent_ChooseCup4" Visibility="Collapsed">
+                                    <Grid>
+                                        <ListBox x:Name="CupContent_CupListBox4" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="CupContent_CupListBox4_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                            </ListBox.Background>
+                                        </ListBox>
+                                    </Grid>
+                                </Border>
+                                <!--Preview team from cup-->
+                                <Border x:Name="CupContent_PreviewTeam" Visibility="Collapsed">
+                                    <Grid>
+                                        <ListBox x:Name="CupContent_PreviewTeam_ListBox" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="CupContent_PreviewTeam_ListBox_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                            </ListBox.Background>
+                                        </ListBox>
+                                    </Grid>
+                                </Border>
+                                <!--Choose cup 5-->
+                                <Border x:Name="CupContent_ChooseCup5" Visibility="Collapsed">
+                                    <Grid>
+                                        <ListBox x:Name="CupContent_CupListBox5" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="CupContent_CupListBox5_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                            </ListBox.Background>
+                                        </ListBox>
+                                    </Grid>
+                                </Border>
+                                <!--Preview referees from cup-->
+                                <Border x:Name="CupContent_PreviewReferee" Visibility="Collapsed">
+                                    <Grid>
+                                        <ListBox x:Name="CupContent_PreviewReferee_ListBox" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="CupContent_PreviewReferee_ListBox_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                            </ListBox.Background>
+                                        </ListBox>
+                                    </Grid>
+                                </Border>
+
+                            </Grid>
                         </Border>
                     </Grid>
                 </Border>
                 <!--End of container with CUP content-->
 
-                <Border x:Name="ContainerContent_Tournament" Background="Pink" Margin="5,90,120,10" Visibility="Collapsed">
+                <!--Container with TOURNAMENT content-->
+                <Border x:Name="ContainerContent_Tournament" Margin="5,90,120,10" Visibility="Visible">
+                    <Border.Background>
+                        <SolidColorBrush Color="Pink" Opacity="0.3"/>
+                    </Border.Background>
+                    <!--Whole content-->
+                    <Grid>
+                        <!--Content menu-->
+                        <Border Name="ContainerNavigationBar_Tournament" CornerRadius="10" VerticalAlignment="Top" HorizontalAlignment="Right" Height="Auto" BorderBrush="Black" BorderThickness="4">
+                            <Border.Background>
+                                <SolidColorBrush Color="White" Opacity=".5"/>
+                            </Border.Background>
+                            <Menu x:Name="NavigationBar_Tournament" Height="Auto" Width="Auto">
+                                <Menu.Background>
+                                    <SolidColorBrush Color="Red" Opacity=".1"/>
+                                </Menu.Background>
+                                <MenuItem x:Name="NavBarItem_Tournament" Style="{StaticResource MenuItemStyle}" Margin="7,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Start Tournament" Click="NavBarItem_Tournament_Click" MouseEnter="NavBarItem_Tournament_MouseEnter" MouseLeave="NavBarItem_Tournament_MouseLeave">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-next-bw-80.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem Style="{StaticResource MenuItemStyle}" HorizontalAlignment="Stretch" Width="5" VerticalAlignment="Stretch" Tag="mySeparator">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-column-100.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+
+                                <MenuItem x:Name="NavBarItem1_Tournament" Style="{StaticResource MenuButtonStyle}" Margin="5,0,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="60" Width="60" ToolTip="Show tournament scoreboard" MouseEnter="NavBarItem1_Tournament_MouseEnter" MouseLeave="NavBarItem1_Tournament_MouseLeave" Click="NavBarItem1_Tournament_Click">
+                                    <MenuItem.Background>
+                                        <ImageBrush ImageSource="media/icons8-leaderboard-bw-64.png"/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                            </Menu>
+                        </Border>
+                        <!--Content body-->
+                        <Border x:Name="ContainerTournamentContent" Margin="0,75,0,0" HorizontalAlignment="Stretch" Height="Auto" CornerRadius="10">
+                            <Border.Background>
+                                <SolidColorBrush Color="Red" Opacity=".1"/>
+                            </Border.Background>
+                            <Grid>
+
+                                <!--Choose cup-->
+                                <Border x:Name="TournamentContent_ChooseTournament" Visibility="Collapsed">
+                                    <Grid>
+                                        <ListBox x:Name="TournamentContent_TournamentListBox" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="TournamentContent_TournamentListBox_SelectionChanged">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                            </ListBox.Background>
+                                        </ListBox>
+                                    </Grid>
+                                </Border>
+                                <!--Start tournament-->
+                                <Border x:Name="TournamentContent_Start" Visibility="Collapsed">
+                                    <Grid>
+                                        <Label Content="CUP TIE" FontSize="20" Margin="386,10,386,344" FontFamily="Roboto" Foreground="White" HorizontalContentAlignment="Center"/>
+                                        <Label x:Name="HostTeamName" Content="HOST TEAM" FontSize="20" Margin="10,36,461,318" FontFamily="Roboto" Foreground="White" HorizontalContentAlignment="Center"/>
+                                        <Label x:Name="GuestTeamName" Content="GUEST TEAM" FontSize="20" Margin="461,36,10,318" FontFamily="Roboto" Foreground="White" HorizontalContentAlignment="Center"/>
+                                        <Label x:Name="HostScore" Content="HOST SCORE" FontSize="20" Margin="88,81,535,165" FontFamily="Roboto" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                                        <Label x:Name="GuestScore" Content="GUEST SCORE" FontSize="20" Margin="537,81,86,165" FontFamily="Roboto" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                                        <Label Visibility="Collapsed" x:Name="Comment" Content="COMMENT" FontSize="20" Margin="10,292,10,62" FontFamily="Roboto" Foreground="White" HorizontalContentAlignment="Left"/>
+                                        <Label x:Name="Winner" Content="WINNER" FontSize="20" Margin="219,200,216,107" FontFamily="Roboto" Foreground="White" HorizontalContentAlignment="Center"/>
+                                        <Label Content=":" FontSize="20" Margin="219,138,216,216" FontFamily="Roboto" Foreground="White" HorizontalContentAlignment="Center"/>
+
+                                        <Button x:Name="TournamentContent_StartButton" Style="{StaticResource ButtonStyle}" Content="START" Margin="298,337,291,10" Foreground="White" FontFamily="Roboto Medium" FontSize="16" Click="TournamentContent_StartButton_Click" >
+                                            <Button.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.7"/>
+                                            </Button.Background>
+                                        </Button>
+                                    </Grid>
+                                </Border>
+                                <!--Tournament dais-->
+                                <Border x:Name="TournamentContent_Dais" Visibility="Collapsed">
+                                    <Grid>
+                                        <ListBox x:Name="TournamentContent_DaisListBox" Margin="0,0,0,40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                            <ListBox.Background>
+                                                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                            </ListBox.Background>
+                                        </ListBox>
+                                    </Grid>
+                                </Border>
+
+                            </Grid>
+                        </Border>
+
+                    </Grid>
                 </Border>
+                <!--End of container with TOURNAMENT content-->
 
             </Grid>
         </DockPanel>
