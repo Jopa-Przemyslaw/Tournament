@@ -73,7 +73,7 @@ namespace Tournament
 
             dispatcherTimer = new DispatcherTimer();
             menuController = new MenuController(ref borders, this, this.ContentTitle, new PropertyPath(MarginProperty));
-            navbarController = new NavbarController(ref playerNavItems);
+            navbarController = new NavbarController();
             animationsController = new AnimationsController(new PropertyPath(MarginProperty), this);
             //Initiation of lists of Players nd Teams nd Refs nd Cups.
             listOfPlayers = new List<Player>();
