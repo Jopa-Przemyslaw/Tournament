@@ -503,7 +503,10 @@ namespace Tournament
                 {
                     var name = listOfPlayers.ElementAt((int)selectedPlayerNb).GetName;
                     var surname = listOfPlayers.ElementAt((int)selectedPlayerNb).GetSurname;
-                    listOfPlayers.ElementAt((int)selectedPlayerNb).playerTeam.playersList.Remove(listOfPlayers.ElementAt((int)selectedPlayerNb));
+                    if (listOfPlayers.ElementAt((int)selectedPlayerNb).playerTeam != null)
+                    {
+                        listOfPlayers.ElementAt((int)selectedPlayerNb).playerTeam.playersList.Remove(listOfPlayers.ElementAt((int)selectedPlayerNb));
+                    }
                     //listOfPlayers.ElementAt((int)selectedPlayerNb).SetTeam(null);
                     listOfPlayers.RemoveAt((int)selectedPlayerNb);
                     MessageBox.Show($"{name} {surname} " +
@@ -1299,7 +1302,7 @@ namespace Tournament
         #region mouse enter/leave events
         private void NavBarItem_Tournament_MouseEnter(object sender, MouseEventArgs e)
         {
-            if(TournamentContent_ChooseTournament.Visibility==Visibility.Collapsed && TournamentContent_Start.Visibility == Visibility.Collapsed)
+            if (TournamentContent_ChooseTournament.Visibility == Visibility.Collapsed && TournamentContent_Start.Visibility == Visibility.Collapsed)
             {
                 navbarController.navbarIconsController.PlayIconOn(ref NavBarItem_Tournament);
             }
@@ -1315,7 +1318,7 @@ namespace Tournament
 
         private void NavBarItem1_Tournament_MouseEnter(object sender, MouseEventArgs e)
         {
-            if(TournamentContent_Dais.Visibility == Visibility.Collapsed)
+            if (TournamentContent_Dais.Visibility == Visibility.Collapsed)
             {
                 navbarController.navbarIconsController.DaisIconOn(ref NavBarItem1_Tournament);
             }
